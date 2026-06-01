@@ -1,30 +1,21 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */{
+{
   "sections": {
     "hero_jVaWmY": {
       "type": "hero",
       "blocks": {
-        "text_YLPk4p": {
+        "text_heading": {
           "type": "text",
-          "name": "t:names.heading",
           "settings": {
-            "text": "<h1>The Clary Collection</h1>",
+            "text": "<h1>Your Best Is Earned.</h1>",
             "width": "100%",
             "max_width": "narrow",
-            "alignment": "center",
+            "alignment": "left",
             "type_preset": "h1",
             "font": "var(--font-heading--family)",
             "font_size": "1rem",
             "line_height": "normal",
             "letter_spacing": "normal",
-            "case": "none",
+            "case": "uppercase",
             "wrap": "pretty",
             "color": "var(--color-foreground-heading)",
             "background": false,
@@ -37,14 +28,13 @@
           },
           "blocks": {}
         },
-        "text_subheading": {
+        "text_body": {
           "type": "text",
-          "name": "t:names.text",
           "settings": {
-            "text": "<p>Discover our curated collection of timeless pieces</p>",
+            "text": "<p>You can’t find just any nutrition brand. Ascent uses high quality ingredients with zero artificial flavors or sweeteners, so you can trust what you put in your body is supporting your goals.</p>",
             "width": "100%",
             "max_width": "narrow",
-            "alignment": "center",
+            "alignment": "left",
             "type_preset": "paragraph",
             "font": "var(--font-body--family)",
             "font_size": "1rem",
@@ -63,14 +53,13 @@
           },
           "blocks": {}
         },
-        "button_H9gpTf": {
+        "button_cta": {
           "type": "button",
-          "name": "t:names.button",
           "settings": {
-            "label": "Shop Now",
-            "link": "shopify://collections/all",
+            "label": "SHOP NOW",
+            "link": "/",
             "open_in_new_tab": false,
-            "style_class": "button-secondary",
+            "style_class": "button",
             "width": "fit-content",
             "custom_width": 100,
             "width_mobile": "fit-content",
@@ -80,11 +69,10 @@
         }
       },
       "block_order": [
-        "text_YLPk4p",
-        "text_subheading",
-        "button_H9gpTf"
+        "text_heading",
+        "text_body",
+        "button_cta"
       ],
-      "name": "t:names.hero",
       "settings": {
         "media_type_1": "image",
         "media_type_2": "image",
@@ -98,21 +86,296 @@
         "horizontal_alignment": "space-between",
         "vertical_alignment": "flex-end",
         "align_baseline": true,
-        "horizontal_alignment_flex_direction_column": "center",
+        "horizontal_alignment_flex_direction_column": "flex-start",
         "vertical_alignment_flex_direction_column": "center",
         "gap": 20,
         "section_width": "page-width",
         "section_height": "large",
         "section_height_custom": 50,
-        "color_scheme": "scheme-5",
+        "color_scheme": "scheme-7",
         "toggle_overlay": true,
         "overlay_color": "#00000080",
-        "overlay_style": "gradient",
+        "overlay_style": "solid",
         "gradient_direction": "to top",
         "blurred_reflection": false,
         "reflection_opacity": 75,
         "padding-block-start": 40,
         "padding-block-end": 40
+      }
+    },
+    "usps_bar": {
+      "type": "section",
+      "blocks": {
+        "group_1": {
+          "type": "group",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "horizontal_alignment_flex_direction_column": "center",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 8,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "icon_1": {
+              "type": "icon",
+              "settings": {
+                "icon": "leaf",
+                "width": 32
+              }
+            },
+            "text_1": {
+              "type": "text",
+              "settings": {
+                "text": "<p>Zero Artificial Flavors & Sweeteners</p>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "center",
+                "type_preset": "h6",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "uppercase",
+                "wrap": "pretty",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              }
+            }
+          },
+          "block_order": ["icon_1", "text_1"]
+        },
+        "group_2": {
+          "type": "group",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "horizontal_alignment_flex_direction_column": "center",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 8,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "icon_2": {
+              "type": "icon",
+              "settings": {
+                "icon": "heart",
+                "width": 32
+              }
+            },
+            "text_2": {
+              "type": "text",
+              "settings": {
+                "text": "<p>Made to Boost Your Health</p>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "center",
+                "type_preset": "h6",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "uppercase",
+                "wrap": "pretty",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              }
+            }
+          },
+          "block_order": ["icon_2", "text_2"]
+        },
+        "group_3": {
+          "type": "group",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "horizontal_alignment_flex_direction_column": "center",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 8,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "icon_3": {
+              "type": "icon",
+              "settings": {
+                "icon": "lightning_bolt",
+                "width": 32
+              }
+            },
+            "text_3": {
+              "type": "text",
+              "settings": {
+                "text": "<p>High Protein Supporting Recovery</p>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "center",
+                "type_preset": "h6",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "uppercase",
+                "wrap": "pretty",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              }
+            }
+          },
+          "block_order": ["icon_3", "text_3"]
+        },
+        "group_4": {
+          "type": "group",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "horizontal_alignment_flex_direction_column": "center",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 8,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "icon_4": {
+              "type": "icon",
+              "settings": {
+                "icon": "check_box",
+                "width": 32
+              }
+            },
+            "text_4": {
+              "type": "text",
+              "settings": {
+                "text": "<p>Independently Tested</p>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "center",
+                "type_preset": "h6",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "uppercase",
+                "wrap": "pretty",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              }
+            }
+          },
+          "block_order": ["icon_4", "text_4"]
+        }
+      },
+      "block_order": ["group_1", "group_2", "group_3", "group_4"],
+      "settings": {
+        "content_direction": "row",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "space-between",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 24,
+        "section_width": "page-width",
+        "section_height": "",
+        "color_scheme": "scheme-5",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "padding-block-start": 20,
+        "padding-block-end": 20
       }
     },
     "product_list_fa6P9H": {
@@ -312,6 +575,7 @@
   },
   "order": [
     "hero_jVaWmY",
+    "usps_bar",
     "product_list_fa6P9H"
   ]
 }
