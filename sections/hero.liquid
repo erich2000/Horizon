@@ -522,6 +522,7 @@
       %}
       {{ media }}
     </div>
+    {% capture blocks_content %}{% content_for 'blocks' %}{% endcapture %}
     <div
       class="
         hero__content-wrapper
@@ -534,7 +535,16 @@
       "
       style="{% render 'layout-panel-style', settings: section.settings %}"
     >
-      {% content_for 'blocks' %}
+      {% if section.settings.content_panel_enabled %}
+        <div
+          class="hero__content-panel"
+          style="--hero-panel-bg: {{ section.settings.content_panel_color }}; --hero-panel-padding: {{ section.settings.content_panel_padding }}px; --hero-panel-radius: {{ section.settings.content_panel_radius }}px;"
+        >
+          {{ blocks_content }}
+        </div>
+      {% else %}
+        {{ blocks_content }}
+      {% endif %}
     </div>
   </div>
 </div>
@@ -720,6 +730,22 @@
     @media screen and (min-width: 750px) {
       display: none;
     }
+  }
+
+  .hero__content-panel {
+    background-color: var(--hero-panel-bg, #ffffff);
+    padding: var(--hero-panel-padding, 32px);
+    border-radius: var(--hero-panel-radius, 0px);
+    --color-foreground: rgb(0 0 0 / 81%);
+    --color-foreground-rgb: 0, 0, 0;
+    --color-foreground-heading: rgb(0, 0, 0);
+    --color-foreground-heading-rgb: 0, 0, 0;
+    --font-h1--color: var(--color-foreground-heading);
+    --font-h2--color: var(--color-foreground-heading);
+    --font-h3--color: var(--color-foreground-heading);
+    --font-h4--color: var(--color-foreground-heading);
+    --font-h5--color: var(--color-foreground-heading);
+    --font-h6--color: var(--color-foreground-heading);
   }
 
   .hero__blurred-image img,
@@ -1214,6 +1240,46 @@
       "unit": "%",
       "default": 75,
       "visible_if": "{{ section.settings.blurred_reflection and section.settings.media_type_1 != 'video' or section.settings.media_type_2 != 'video' }}"
+    },
+    {
+      "type": "header",
+      "content": "Content Panel"
+    },
+    {
+      "type": "checkbox",
+      "id": "content_panel_enabled",
+      "label": "Show content panel",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "content_panel_color",
+      "label": "Panel color",
+      "alpha": true,
+      "default": "#FFFFFF",
+      "visible_if": "{{ section.settings.content_panel_enabled }}"
+    },
+    {
+      "type": "range",
+      "id": "content_panel_padding",
+      "label": "Panel padding",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 32,
+      "visible_if": "{{ section.settings.content_panel_enabled }}"
+    },
+    {
+      "type": "range",
+      "id": "content_panel_radius",
+      "label": "Corner radius",
+      "min": 0,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 0,
+      "visible_if": "{{ section.settings.content_panel_enabled }}"
     },
     {
       "type": "header",
