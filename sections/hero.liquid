@@ -533,12 +533,12 @@
         {{section.settings.section_width}}
         {% if request.design_mode %}hero__content-wrapper--design-mode{% endif %}
       "
-      style="{% render 'layout-panel-style', settings: section.settings %}"
+      style="{% render 'layout-panel-style', settings: section.settings %}{% if section.settings.content_panel_enabled and section.settings.content_panel_width == '50%' %} --vertical-alignment-mobile: {% if section.settings.content_panel_mobile_position == 'bottom' %}flex-end{% else %}flex-start{% endif %};{% endif %}"
     >
       {% if section.settings.content_panel_enabled %}
         <div
           class="hero__content-panel"
-          style="--hero-panel-bg: {{ section.settings.content_panel_color }}; --hero-panel-padding: {{ section.settings.content_panel_padding }}px; --hero-panel-radius: {{ section.settings.content_panel_radius }}px;"
+          style="--hero-panel-bg: {{ section.settings.content_panel_color }}; --hero-panel-padding: {{ section.settings.content_panel_padding }}px; --hero-panel-radius: {{ section.settings.content_panel_radius }}px; --hero-panel-width: {{ section.settings.content_panel_width | default: '100%' }}; --hero-panel-align-self: {% if section.settings.content_panel_width == '50%' and section.settings.content_panel_desktop_position == 'right' %}flex-end{% else %}flex-start{% endif %};"
         >
           {{ blocks_content }}
         </div>
@@ -736,6 +736,8 @@
     background-color: var(--hero-panel-bg, #ffffff);
     padding: var(--hero-panel-padding, 32px);
     border-radius: var(--hero-panel-radius, 0px);
+    width: var(--hero-panel-width, 100%);
+    align-self: var(--hero-panel-align-self, flex-start);
     --color-foreground: rgb(0 0 0 / 81%);
     --color-foreground-rgb: 0, 0, 0;
     --color-foreground-heading: rgb(0, 0, 0);
@@ -746,6 +748,11 @@
     --font-h4--color: var(--color-foreground-heading);
     --font-h5--color: var(--color-foreground-heading);
     --font-h6--color: var(--color-foreground-heading);
+
+    @media screen and (max-width: 749px) {
+      width: 100%;
+      align-self: auto;
+    }
   }
 
   .hero__blurred-image img,
@@ -1258,6 +1265,39 @@
       "alpha": true,
       "default": "#FFFFFF",
       "visible_if": "{{ section.settings.content_panel_enabled }}"
+    },
+    {
+      "type": "select",
+      "id": "content_panel_width",
+      "label": "Panel width",
+      "options": [
+        { "value": "100%", "label": "Full width" },
+        { "value": "50%", "label": "Half width" }
+      ],
+      "default": "100%",
+      "visible_if": "{{ section.settings.content_panel_enabled }}"
+    },
+    {
+      "type": "select",
+      "id": "content_panel_desktop_position",
+      "label": "Desktop position",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left",
+      "visible_if": "{{ section.settings.content_panel_enabled and section.settings.content_panel_width == '50%' }}"
+    },
+    {
+      "type": "select",
+      "id": "content_panel_mobile_position",
+      "label": "Mobile position",
+      "options": [
+        { "value": "top", "label": "Top" },
+        { "value": "bottom", "label": "Bottom" }
+      ],
+      "default": "top",
+      "visible_if": "{{ section.settings.content_panel_enabled and section.settings.content_panel_width == '50%' }}"
     },
     {
       "type": "range",
