@@ -1,0 +1,141 @@
+
+
+{% capture blocks_content %}
+  {% content_for 'blocks' %}
+{% endcapture %}
+
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+<div
+  class="value-props-slideshow section section--full-width color-{{ section.settings.color_scheme }}"
+  style="
+    {% render 'spacing-padding', settings: section.settings %};
+    --value-prop-icon-size: {{ section.settings.icon_size }}px;
+  "
+>
+  <div class="value-props-slideshow__track">
+    {{ blocks_content }}
+  </div>
+</div>
+
+{% stylesheet %}
+  .value-props-slideshow {
+    display: block;
+  }
+
+  .value-props-slideshow__track {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 66px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .value-props-slideshow__track {
+      justify-content: flex-start;
+      gap: 24px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding-inline: 16px;
+    }
+
+    .value-props-slideshow__track::-webkit-scrollbar {
+      display: none;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Value props slideshow",
+  "tag": "section",
+  "class": "value-props-slideshow-wrapper section-wrapper",
+  "blocks": [
+    {
+      "type": "_value-prop-slide"
+    },
+    {
+      "type": "@app"
+    }
+  ],
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:settings.color_scheme",
+      "default": "scheme-8"
+    },
+    {
+      "type": "number",
+      "id": "icon_size",
+      "label": "Icon size",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 6,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 6,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Value props slideshow",
+      "blocks": {
+        "slide_1": {
+          "type": "_value-prop-slide",
+          "settings": {
+            "title": "Zero Artificial Flavors & Sweeteners"
+          }
+        },
+        "slide_2": {
+          "type": "_value-prop-slide",
+          "settings": {
+            "title": "Support Your Muscle Health"
+          }
+        },
+        "slide_3": {
+          "type": "_value-prop-slide",
+          "settings": {
+            "title": "Fuel Your Fitness Goals"
+          }
+        },
+        "slide_4": {
+          "type": "_value-prop-slide",
+          "settings": {
+            "title": "Post-Workout Recovery"
+          }
+        },
+        "slide_5": {
+          "type": "_value-prop-slide",
+          "settings": {
+            "title": "Delicious Flavors You Will Love"
+          }
+        }
+      },
+      "block_order": [
+        "slide_1",
+        "slide_2",
+        "slide_3",
+        "slide_4",
+        "slide_5"
+      ]
+    }
+  ]
+}
+{% endschema %}

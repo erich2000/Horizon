@@ -1,0 +1,91 @@
+
+
+{% liquid
+  assign block_settings = block.settings
+%}
+
+<div class="value-prop-slide" {{ block.shopify_attributes }}>
+  {%- if block_settings.image -%}
+    <img
+      class="value-prop-slide__icon"
+      src="{{ block_settings.image | image_url: width: 64 }}"
+      alt="{{ block_settings.image.alt | escape }}"
+      width="{{ block_settings.image.width }}"
+      height="{{ block_settings.image.height }}"
+      loading="lazy"
+    >
+  {%- else -%}
+    <div class="value-prop-slide__icon-placeholder"></div>
+  {%- endif -%}
+  {%- if block_settings.title != blank -%}
+    <p class="value-prop-slide__title">{{ block_settings.title | escape }}</p>
+  {%- endif -%}
+</div>
+
+{% stylesheet %}
+  .value-prop-slide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    min-width: calc(33.333% - 16px);
+  }
+
+  .value-prop-slide__icon {
+    width: var(--value-prop-icon-size, 32px);
+    height: var(--value-prop-icon-size, 32px);
+    object-fit: contain;
+  }
+
+  .value-prop-slide__icon-placeholder {
+    width: var(--value-prop-icon-size, 32px);
+    height: var(--value-prop-icon-size, 32px);
+  }
+
+  .value-prop-slide__title {
+    margin-block-start: 8px;
+    font-family: var(--font-body--family);
+    font-size: 10px;
+    font-weight: 800;
+    line-height: 15px;
+    letter-spacing: 1.7px;
+    text-transform: uppercase;
+    color: var(--color-foreground);
+    max-width: 130px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .value-prop-slide {
+      flex-basis: 113px;
+      min-width: auto;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Value prop slide",
+  "tag": null,
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Icon image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Value proposition"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Value prop slide",
+      "category": "t:categories.basic"
+    }
+  ]
+}
+{% endschema %}

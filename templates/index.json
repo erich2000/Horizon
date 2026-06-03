@@ -672,11 +672,65 @@
         "padding-block-start": 48,
         "padding-block-end": 48
       }
+    },
+    "value_props_slideshow": {
+      "type": "value-props-slideshow",
+      "blocks": {
+        "slide_1": {
+          "type": "_value-prop-slide",
+          "settings": {
+            "image": "shopify://shop_images/vector-1-27d29b79cfd0.png",
+            "title": "Zero Artificial Flavors & Sweeteners"
+          }
+        },
+        "slide_2": {
+          "type": "_value-prop-slide",
+          "settings": {
+            "image": "shopify://shop_images/runner-a8f80a22f14c.png",
+            "title": "Support Your Muscle Health"
+          }
+        },
+        "slide_3": {
+          "type": "_value-prop-slide",
+          "settings": {
+            "image": "shopify://shop_images/battery-70a21c653332.png",
+            "title": "Fuel Your Fitness Goals"
+          }
+        },
+        "slide_4": {
+          "type": "_value-prop-slide",
+          "settings": {
+            "image": "shopify://shop_images/stopwatch-f55f861f092c.png",
+            "title": "Post-Workout Recovery"
+          }
+        },
+        "slide_5": {
+          "type": "_value-prop-slide",
+          "settings": {
+            "image": "shopify://shop_images/vanilla-2-e80a9258f538.png",
+            "title": "Delicious Flavors You Will Love"
+          }
+        }
+      },
+      "block_order": [
+        "slide_1",
+        "slide_2",
+        "slide_3",
+        "slide_4",
+        "slide_5"
+      ],
+      "settings": {
+        "color_scheme": "scheme-8",
+        "icon_size": 32,
+        "padding-block-start": 6,
+        "padding-block-end": 6
+      }
     }
   },
   "order": [
     "hero_jVaWmY",
     "usps_bar",
+    "value_props_slideshow",
     "product_list_fa6P9H"
   ]
 }
