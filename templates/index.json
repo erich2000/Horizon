@@ -372,11 +372,67 @@
         "padding-block-start": 48,
         "padding-block-end": 48
       }
+    },
+    "multi_image_slideshow_EEbpUm": {
+      "type": "multi-image-slideshow",
+      "blocks": {
+        "multi_slide_9jdLHj": {
+          "type": "_multi-slide",
+          "settings": {
+            "subheading": "Post Workout Recovery",
+            "heading": "Whey Protein",
+            "description": "25g of clean, delicious, fast-digesting whey protein to help your muscles recover from intense workouts",
+            "stat_1_value": "25g of",
+            "stat_1_label": "Protein",
+            "stat_2_value": "5.5g of",
+            "stat_2_label": "BCAA's",
+            "stat_3_value": "0g of",
+            "stat_3_label": "Added Sugar",
+            "button_text": "Shop Now",
+            "button_link": ""
+          },
+          "blocks": {}
+        },
+        "multi_slide_LYknB3": {
+          "type": "_multi-slide",
+          "settings": {
+            "subheading": "Strength Support",
+            "heading": "Clean Creatine",
+            "description": "Build strength, endurance, and lean muscle mass with this workout essential when combined with a workout routine",
+            "stat_1_value": "5g of",
+            "stat_1_label": "Creatine",
+            "stat_2_value": "0g of",
+            "stat_2_label": "Fillers",
+            "stat_3_value": "45",
+            "stat_3_label": "Servings",
+            "button_text": "Shop Now",
+            "button_link": ""
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "multi_slide_9jdLHj",
+        "multi_slide_LYknB3"
+      ],
+      "name": "Multi-image slideshow",
+      "settings": {
+        "autoplay": true,
+        "autoplay_speed": 5,
+        "icons_style": "chevron",
+        "icons_shape": "circle",
+        "slideshow_controls_style": "dots",
+        "slideshow_gap": 0,
+        "color_scheme": "",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
     }
   },
   "order": [
     "hero_jVaWmY",
     "value_props_slideshow",
+    "multi_image_slideshow_EEbpUm",
     "product_list_fa6P9H"
   ]
 }
