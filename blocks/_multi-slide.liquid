@@ -1,59 +1,95 @@
 {% doc %}
   Multi-image slideshow slide block.
 
-  Renders a slide with product image, text content overlay (subheading, heading,
-  description, stat badges, CTA button). On desktop the content overlays the image
-  with scroll-linked fade-in animation. On mobile the image and content are stacked.
+  Two-layer hover design:
+  - Base layer: product image background + "Shop Now" CTA (always visible)
+  - Layover: separate bg image + text content + CTA (desktop: shown on hover only; mobile: always visible below image)
 
   @example {% content_for 'block', type: '_multi-slide', id: 'slide-1' %}
 {% enddoc %}
 
 {%- assign block_index = section.blocks | find_index: 'id', block.id -%}
 
+{%- liquid
+  if block.settings.product != blank
+    assign slide_url = block.settings.product.url
+  elsif block.settings.button_link != blank
+    assign slide_url = block.settings.button_link
+  endif
+
+  assign base_img = block.settings.image
+  unless base_img
+    if block.settings.product != blank
+      assign base_img = block.settings.product.featured_image
+    endif
+  endunless
+
+  assign hover_img = block.settings.layover_image
+-%}
+
 {% capture children %}
-  <div class="multi-slide__image-container">
-    {%- if block.settings.image -%}
-      {%- liquid
-        assign img = block.settings.image
-        assign height = img.width | divided_by: img.aspect_ratio | round
-        assign sizes = '(min-width: 750px) 50vw, 85vw'
-        assign widths = '375,550,750,1100,1500'
-        assign loading = 'lazy'
-        assign fetchpriority = 'low'
-        assign section_index = section.index
+  {%- comment -%} BASE LAYER: product image + Shop Now CTA (always visible) {%- endcomment -%}
+  <div class="multi-slide__base">
+    <div class="multi-slide__image-container">
+      {%- if base_img -%}
+        {%- liquid
+          assign img = base_img
+          assign height = img.width | divided_by: img.aspect_ratio | round
+          assign sizes = '(min-width: 750px) 50vw, 85vw'
+          assign widths = '375,550,750,1100,1500'
+          assign loading = 'lazy'
+          assign fetchpriority = 'low'
+          assign section_index = section.index
 
-        if block_index == 0 and section_index <= 3
-          assign loading = 'eager'
-        endif
+          if block_index == 0 and section_index <= 3
+            assign loading = 'eager'
+          endif
 
-        if block_index == 0 and section_index == 1
-          assign fetchpriority = 'high'
-        endif
-      -%}
-      {{
-        img
-        | image_url: width: img.width
-        | image_tag:
-          height: height,
-          sizes: sizes,
-          widths: widths,
-          class: 'multi-slide__image',
-          loading: loading,
-          fetchpriority: fetchpriority,
-          alt: img.alt
-      }}
-    {%- else -%}
-      {%- liquid
-        assign modulo_result = block_index | modulo: 2
-        assign placeholder_variant = 2 | minus: modulo_result
-        assign placeholder_name = 'hero-apparel-' | append: placeholder_variant
-      -%}
-      {{ placeholder_name | placeholder_svg_tag: 'multi-slide__image' }}
+          if block_index == 0 and section_index == 1
+            assign fetchpriority = 'high'
+          endif
+        -%}
+        {{
+          img
+          | image_url: width: img.width
+          | image_tag:
+            height: height,
+            sizes: sizes,
+            widths: widths,
+            class: 'multi-slide__image',
+            loading: loading,
+            fetchpriority: fetchpriority,
+            alt: img.alt
+        }}
+      {%- else -%}
+        {%- liquid
+          assign modulo_result = block_index | modulo: 2
+          assign placeholder_variant = 2 | minus: modulo_result
+          assign placeholder_name = 'hero-apparel-' | append: placeholder_variant
+        -%}
+        {{ placeholder_name | placeholder_svg_tag: 'multi-slide__image' }}
+      {%- endif -%}
+    </div>
+
+    {%- if block.settings.shop_now_text != blank -%}
+      <a
+        {% if slide_url %}href="{{ slide_url }}"{% endif %}
+        class="multi-slide__shop-cta"
+      >
+        {{ block.settings.shop_now_text | escape }}
+      </a>
     {%- endif -%}
   </div>
 
-  <div class="multi-slide__content" {{ block.shopify_attributes }}>
-    <div class="multi-slide__content-inner">
+  {%- comment -%} LAYOVER: hover background + text content + CTA {%- endcomment -%}
+  <div
+    class="multi-slide__layover{% if hover_img %} multi-slide__layover--has-image{% endif %}"
+    {% if hover_img %}
+      style="--layover-bg: url('{{ hover_img | image_url: width: 1500 }}')"
+    {% endif %}
+    {{ block.shopify_attributes }}
+  >
+    <div class="multi-slide__layover-inner">
       {%- if block.settings.subheading != blank -%}
         <p class="multi-slide__subheading">{{ block.settings.subheading | escape }}</p>
       {%- endif -%}
@@ -66,7 +102,7 @@
         <p class="multi-slide__description">{{ block.settings.description | escape }}</p>
       {%- endif -%}
 
-      {%- if block.settings.stat_1_value != blank -%}
+      {%- if block.settings.stat_1_value != blank or block.settings.stat_2_value != blank or block.settings.stat_3_value != blank -%}
         <div class="multi-slide__stats">
           {%- if block.settings.stat_1_value != blank -%}
             <div class="multi-slide__stat">
@@ -91,9 +127,7 @@
 
       {%- if block.settings.button_text != blank -%}
         <a
-          {% if block.settings.button_link != blank %}
-            href="{{ block.settings.button_link }}"
-          {% endif %}
+          {% if slide_url %}href="{{ slide_url }}"{% endif %}
           class="multi-slide__button"
         >
           {{ block.settings.button_text | escape }}
@@ -111,6 +145,19 @@
 %}
 
 {% stylesheet %}
+  /* ── STRUCTURE ── */
+  slideshow-slide {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .multi-slide__base,
+  .multi-slide__layover {
+    position: relative;
+    width: 100%;
+  }
+
+  /* ── BASE LAYER: image ── */
   .multi-slide__image-container {
     display: flex;
     width: 100%;
@@ -125,20 +172,58 @@
     object-position: center center;
   }
 
-  .multi-slide__content {
-    position: relative;
-    z-index: var(--layer-flat, 1);
+  /* ── BASE LAYER: Shop Now CTA ── */
+  .multi-slide__shop-cta {
+    display: block;
+    max-width: 356px;
+    padding: 10px 30px;
+    background-color: var(--multi-slide-button-bg, #F3E200);
+    color: var(--multi-slide-button-color, #00000E);
+    border-radius: 35px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1.2;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
   }
 
-  .multi-slide__content-inner {
+  .multi-slide__shop-cta:hover {
+    opacity: 0.85;
+  }
+
+  /* ── LAYOVER ── */
+  .multi-slide__layover {
+    background-image: var(--layover-bg);
+    background-size: cover;
+    background-position: center;
+  }
+
+  /* Dark overlay for readability when a bg image is set */
+  .multi-slide__layover--has-image::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 14, 0.4);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .multi-slide__layover-inner {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 16px 10px;
     text-align: center;
+    position: relative;
+    z-index: 1;
   }
 
+  /* ── TYPOGRAPHY ── */
   .multi-slide__subheading {
     margin-block-start: 16px;
     margin-block-end: 0;
@@ -170,6 +255,7 @@
     max-width: 336px;
   }
 
+  /* ── STATS ── */
   .multi-slide__stats {
     display: flex;
     justify-content: center;
@@ -204,6 +290,7 @@
     text-align: center;
   }
 
+  /* ── LAYOVER BUTTON ── */
   .multi-slide__button {
     display: block;
     width: 100%;
@@ -228,41 +315,80 @@
     opacity: 0.85;
   }
 
-  /* Desktop: overlay content on image */
+  /* ── DESKTOP ── */
   @media screen and (min-width: 750px) {
+    /* Both layers fill the slide */
+    .multi-slide__base,
+    .multi-slide__layover {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .multi-slide__base {
+      z-index: 1;
+    }
+
+    .multi-slide__layover {
+      z-index: 2;
+      opacity: 0;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.35s ease;
+    }
+
+    slideshow-slide:hover .multi-slide__layover {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* White text for readability on dark/image backgrounds */
+    .multi-slide__layover .multi-slide__subheading,
+    .multi-slide__layover .multi-slide__heading,
+    .multi-slide__layover .multi-slide__description,
+    .multi-slide__layover .multi-slide__stat-value,
+    .multi-slide__layover .multi-slide__stat-label {
+      color: #fff;
+    }
+
+    .multi-slide__layover .multi-slide__stat {
+      border-color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* Layover inner: full-height column */
+    .multi-slide__layover-inner {
+      width: 100%;
+      max-width: 356px;
+      height: 100%;
+      padding: 0 10px;
+    }
+
+    /* Image fills base */
     .multi-slide__image-container {
       position: absolute;
       inset: 0;
       height: 100%;
     }
 
-    .multi-slide__content {
+    /* Shop Now pinned to bottom of slide */
+    .multi-slide__shop-cta {
       position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 356px;
     }
 
-    @supports (animation-timeline: auto) {
-      .multi-slide__content {
-        opacity: 0;
-        animation: slide-reveal both linear;
-        animation-timeline: var(--slideshow-timeline);
-      }
-    }
-
-    @media (prefers-reduced-motion) {
-      .multi-slide__content {
-        opacity: 1;
-        animation: none;
-      }
-    }
-
-    .multi-slide__content-inner {
-      max-width: 356px;
-      height: 100%;
-      padding: 0 10px;
+    /* Layover button pinned to bottom */
+    .multi-slide__button {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 356px;
     }
 
     .multi-slide__heading {
@@ -274,17 +400,18 @@
       font-size: 16px;
       line-height: 25.5px;
     }
+  }
 
-    .multi-slide__button {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 356px;
+  /* Reduced motion: skip fade, show layover immediately */
+  @media screen and (min-width: 750px) and (prefers-reduced-motion: reduce) {
+    .multi-slide__layover {
+      transition: none;
+      opacity: 1;
+      pointer-events: auto;
     }
   }
 
-  /* Mobile: stacked layout */
+  /* ── MOBILE ── */
   @media screen and (max-width: 749px) {
     .multi-slide__image-container {
       position: relative;
@@ -292,28 +419,32 @@
       aspect-ratio: 270 / 390;
     }
 
-    .multi-slide__content {
-      position: relative;
+    /* Base Shop Now hidden on mobile — layover has its own CTA */
+    .multi-slide__shop-cta {
+      display: none;
+    }
+
+    /* Layover: always visible, no bg image, stacked below image */
+    .multi-slide__layover {
+      background-image: none;
       padding-block-end: 16px;
     }
 
-    .multi-slide__content-inner {
-      padding: 16px 10px;
+    .multi-slide__layover--has-image::before {
+      display: none;
     }
-  }
 
-  /* Force content visible when animation-timeline unsupported */
-  @supports not (animation-timeline: auto) {
-    .multi-slide__content {
-      opacity: 1;
+    /* Restore theme foreground color on mobile */
+    .multi-slide__layover .multi-slide__subheading,
+    .multi-slide__layover .multi-slide__heading,
+    .multi-slide__layover .multi-slide__description,
+    .multi-slide__layover .multi-slide__stat-value,
+    .multi-slide__layover .multi-slide__stat-label {
+      color: var(--color-foreground);
     }
-  }
 
-  /* Reduced motion fallback */
-  @media (prefers-reduced-motion) {
-    .multi-slide__content {
-      opacity: 1;
-      animation: none;
+    .multi-slide__layover .multi-slide__stat {
+      border-color: var(--color-foreground);
     }
   }
 {% endstylesheet %}
@@ -324,13 +455,42 @@
   "tag": null,
   "settings": [
     {
+      "type": "header",
+      "content": "Product"
+    },
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Product",
+      "info": "Sets the link for both CTAs. Featured image used if no image is set below."
+    },
+    {
       "type": "image_picker",
       "id": "image",
-      "label": "Image"
+      "label": "Product image",
+      "info": "Base background (always visible). Falls back to product featured image."
+    },
+    {
+      "type": "image_picker",
+      "id": "layover_image",
+      "label": "Hover background image",
+      "info": "Displayed as background on hover only. Leave empty to keep product image on hover."
+    },
+    {
+      "type": "text",
+      "id": "shop_now_text",
+      "label": "Base CTA text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Link override",
+      "info": "Overrides product URL when set"
     },
     {
       "type": "header",
-      "content": "Content"
+      "content": "Layover Content"
     },
     {
       "type": "text",
@@ -392,18 +552,13 @@
     },
     {
       "type": "header",
-      "content": "Button"
+      "content": "Layover Button"
     },
     {
       "type": "text",
       "id": "button_text",
       "label": "Button text",
       "default": "Shop Now"
-    },
-    {
-      "type": "url",
-      "id": "button_link",
-      "label": "Button link"
     }
   ],
   "presets": [
