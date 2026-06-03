@@ -518,6 +518,53 @@
         "padding-block-start": 48,
         "padding-block-end": 48
       }
+    },
+    "full_width_info_banner": {
+      "type": "full-width-info-banner",
+      "blocks": {
+        "prop_1": {
+          "type": "prop-item",
+          "settings": {
+            "text": "Zero Artificial Flavors & Sweeteners"
+          }
+        },
+        "prop_2": {
+          "type": "prop-item",
+          "settings": {
+            "text": "Backed by Science"
+          }
+        },
+        "prop_3": {
+          "type": "prop-item",
+          "settings": {
+            "text": "3rd Party Tested"
+          }
+        },
+        "prop_4": {
+          "type": "prop-item",
+          "settings": {
+            "text": "Minimal Ingredients"
+          }
+        }
+      },
+      "block_order": [
+        "prop_1",
+        "prop_2",
+        "prop_3",
+        "prop_4"
+      ],
+      "settings": {
+        "heading": "clean products that work as hard as you do",
+        "background_color": "#111111",
+        "color_scheme": "scheme-1",
+        "content_position": "center-left",
+        "min_height": 750,
+        "min_height_mobile": 700,
+        "panel_padding": 40,
+        "panel_padding_mobile": 30,
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
     }
   },
   "order": [
@@ -525,6 +572,7 @@
     "value_props_slideshow",
     "multi_image_slideshow_EEbpUm",
     "logo_gallery_G9nyhr",
-    "product_list_fa6P9H"
+    "product_list_fa6P9H",
+    "full_width_info_banner"
   ]
 }
