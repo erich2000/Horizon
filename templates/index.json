@@ -111,7 +111,7 @@
         "blurred_reflection": false,
         "reflection_opacity": 75,
         "content_panel_enabled": true,
-        "content_panel_color": "#FFFFFF",
+        "content_panel_color": "#ffffff",
         "content_panel_width": "50%",
         "content_panel_desktop_position": "left",
         "content_panel_mobile_position": "top",
