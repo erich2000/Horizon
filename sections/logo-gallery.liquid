@@ -1,0 +1,247 @@
+
+
+{% liquid
+  assign section_settings = section.settings
+%}
+
+<div class="section-background color-{{ section_settings.color_scheme }}"></div>
+<div
+  class="section section--{{ section_settings.section_width }} color-{{ section_settings.color_scheme }}"
+>
+  <div
+    class="logo-gallery spacing-style"
+    style="
+      --logo-gallery-heading-size: {{ section_settings.heading_font_size }}px;
+      --logo-gallery-gap: {{ section_settings.gap }}px;
+      --logo-gallery-gap-mobile: {{ section_settings.gap_mobile }}px;
+      --logo-max-height: {{ section_settings.max_logo_height }}px;
+      --logo-max-width-mobile: {{ section_settings.max_logo_width_mobile }}px;
+      {% render 'spacing-style', settings: section_settings %}
+    "
+    {{ section.shopify_attributes }}
+  >
+    {% if section_settings.heading != blank %}
+      <h2 class="logo-gallery__heading">{{ section_settings.heading | escape }}</h2>
+    {% endif %}
+
+    <div class="logo-gallery__grid">
+      {% for block in section.blocks %}
+        <div class="logo-gallery__item" {{ block.shopify_attributes }}>
+          {% if block.settings.image != blank %}
+            {{
+              block.settings.image
+              | image_url: height: section_settings.max_logo_height
+              | image_tag:
+                loading: 'lazy',
+                class: 'logo-gallery__image',
+                alt: block.settings.image.alt
+            }}
+          {% else %}
+            <svg
+              class="logo-gallery__placeholder"
+              viewBox="0 0 200 50"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <rect width="200" height="50" fill="currentColor" opacity="0.1" rx="4" />
+              <text x="100" y="30" text-anchor="middle" fill="currentColor" opacity="0.3" font-size="14">Logo</text>
+            </svg>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .logo-gallery {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .logo-gallery__heading {
+    font-family: var(--font-heading--family);
+    font-weight: var(--font-heading--weight);
+    font-size: var(--logo-gallery-heading-size, 46px);
+    line-height: 1.1;
+    text-transform: uppercase;
+    text-align: center;
+    margin-block-end: 50px;
+
+    @media screen and (max-width: 749px) {
+      font-size: calc(var(--logo-gallery-heading-size, 46px) * 0.5);
+      margin-block-end: 30px;
+    }
+  }
+
+  .logo-gallery__grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: var(--logo-gallery-gap, 50px);
+    width: 100%;
+
+    @media screen and (max-width: 749px) {
+      gap: var(--logo-gallery-gap-mobile, 20px);
+    }
+  }
+
+  .logo-gallery__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logo-gallery__image {
+    max-height: var(--logo-max-height, 40px);
+    width: auto;
+    height: auto;
+    object-fit: contain;
+
+    @media screen and (max-width: 749px) {
+      max-height: none;
+      max-width: var(--logo-max-width-mobile, 150px);
+    }
+  }
+
+  .logo-gallery__placeholder {
+    max-height: var(--logo-max-height, 40px);
+    width: auto;
+
+    @media screen and (max-width: 749px) {
+      max-height: none;
+      max-width: var(--logo-max-width-mobile, 150px);
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Logo gallery",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "As Seen In"
+    },
+    {
+      "type": "number",
+      "id": "heading_font_size",
+      "label": "Heading font size",
+      "default": 46
+    },
+    {
+      "type": "header",
+      "content": "Logo sizing"
+    },
+    {
+      "type": "number",
+      "id": "max_logo_height",
+      "label": "Max logo height (px)",
+      "default": 40
+    },
+    {
+      "type": "number",
+      "id": "max_logo_width_mobile",
+      "label": "Max logo width mobile",
+      "default": 150
+    },
+    {
+      "type": "number",
+      "id": "gap",
+      "label": "Gap between logos",
+      "default": 50
+    },
+    {
+      "type": "number",
+      "id": "gap_mobile",
+      "label": "Gap between logos mobile",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Width",
+      "options": [
+        {
+          "value": "page-width",
+          "label": "Page"
+        },
+        {
+          "value": "full-width",
+          "label": "Full"
+        }
+      ],
+      "default": "page-width"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 80
+    }
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Logo",
+      "limit": 12,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Logo image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Logo gallery",
+      "category": "t:categories.storytelling",
+      "blocks": [
+        { "type": "logo" },
+        { "type": "logo" },
+        { "type": "logo" },
+        { "type": "logo" },
+        { "type": "logo" },
+        { "type": "logo" }
+      ]
+    }
+  ]
+}
+{% endschema %}
