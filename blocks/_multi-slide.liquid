@@ -1,9 +1,10 @@
 {% doc %}
   Multi-image slideshow slide block.
 
-  Two-layer hover design:
-  - Base layer: product image background + "Shop Now" CTA (always visible)
-  - Layover: separate bg image + text content + CTA (desktop: shown on hover only; mobile: always visible below image)
+  Structure mirrors ascentprotein.com product-5050:
+  - product image is IN FLOW (block element, 540px tall) — gives the slide its height
+  - shop-now CTA is position:absolute at bottom, z-index 1
+  - layover panel is position:absolute full-cover, z-index 2, fades in on hover (desktop only)
 
   @example {% content_for 'block', type: '_multi-slide', id: 'slide-1' %}
 {% enddoc %}
@@ -28,60 +29,58 @@
 -%}
 
 {% capture children %}
-  {%- comment -%} BASE LAYER: product image + Shop Now CTA (always visible) {%- endcomment -%}
-  <div class="multi-slide__base">
-    <div class="multi-slide__image-container">
-      {%- if base_img -%}
-        {%- liquid
-          assign img = base_img
-          assign height = img.width | divided_by: img.aspect_ratio | round
-          assign sizes = '(min-width: 750px) 50vw, 85vw'
-          assign widths = '375,550,750,1100,1500'
-          assign loading = 'lazy'
-          assign fetchpriority = 'low'
-          assign section_index = section.index
+  {%- comment -%}
+    Product image — in the document flow, gives the slide its 540px height.
+    Matches source: display:block, height:540px, max-height:540px, object-fit:cover.
+  {%- endcomment -%}
+  {%- if base_img -%}
+    {%- liquid
+      assign img = base_img
+      assign sizes = '(min-width: 750px) 50vw, 85vw'
+      assign widths = '375,550,750,1100,1500'
+      assign loading = 'lazy'
+      assign fetchpriority = 'low'
+      assign section_index = section.index
 
-          if block_index == 0 and section_index <= 3
-            assign loading = 'eager'
-          endif
+      if block_index == 0 and section_index <= 3
+        assign loading = 'eager'
+      endif
 
-          if block_index == 0 and section_index == 1
-            assign fetchpriority = 'high'
-          endif
-        -%}
-        {{
-          img
-          | image_url: width: img.width
-          | image_tag:
-            height: height,
-            sizes: sizes,
-            widths: widths,
-            class: 'multi-slide__image',
-            loading: loading,
-            fetchpriority: fetchpriority,
-            alt: img.alt
-        }}
-      {%- else -%}
-        {%- liquid
-          assign modulo_result = block_index | modulo: 2
-          assign placeholder_variant = 2 | minus: modulo_result
-          assign placeholder_name = 'hero-apparel-' | append: placeholder_variant
-        -%}
-        {{ placeholder_name | placeholder_svg_tag: 'multi-slide__image' }}
-      {%- endif -%}
-    </div>
+      if block_index == 0 and section_index == 1
+        assign fetchpriority = 'high'
+      endif
+    -%}
+    {{
+      img
+      | image_url: width: img.width
+      | image_tag:
+        sizes: sizes,
+        widths: widths,
+        class: 'multi-slide__image',
+        loading: loading,
+        fetchpriority: fetchpriority,
+        alt: img.alt
+    }}
+  {%- else -%}
+    {%- liquid
+      assign modulo_result = block_index | modulo: 2
+      assign placeholder_variant = 2 | minus: modulo_result
+      assign placeholder_name = 'hero-apparel-' | append: placeholder_variant
+    -%}
+    {{ placeholder_name | placeholder_svg_tag: 'multi-slide__image' }}
+  {%- endif -%}
 
-    {%- if block.settings.shop_now_text != blank -%}
-      <a
-        {% if slide_url %}href="{{ slide_url }}"{% endif %}
-        class="multi-slide__shop-cta"
-      >
-        {{ block.settings.shop_now_text | escape }}
-      </a>
-    {%- endif -%}
-  </div>
+  {%- comment -%} Base CTA — always visible, sits above the image (z-index 1) {%- endcomment -%}
+  {%- if block.settings.shop_now_text != blank -%}
+    <a
+      {% if slide_url %}href="{{ slide_url }}"{% endif %}
+      class="multi-slide__shop-cta"
+    >
+      {{ block.settings.shop_now_text | escape }}
+    </a>
+  {%- endif -%}
 
-  {%- comment -%} LAYOVER: hover background + text content + CTA {%- endcomment -%}
+  {%- comment -%} Layover — hover bg + text + CTA; desktop: opacity 0→1 on hover; mobile: always visible {%- endcomment -%}
   <div
     class="multi-slide__layover{% if hover_img %} multi-slide__layover--has-image{% endif %}"
     {% if hover_img %}
@@ -145,34 +144,22 @@
 %}
 
 {% stylesheet %}
-  /* ── STRUCTURE ── */
+  /* ── SLIDE CONTAINER ── */
   slideshow-slide {
     position: relative;
     overflow: hidden;
   }
 
-  .multi-slide__base,
-  .multi-slide__layover {
-    position: relative;
-    width: 100%;
-  }
-
-  /* ── BASE LAYER: image ── */
-  .multi-slide__image-container {
-    display: flex;
-    width: 100%;
-    overflow: hidden;
-  }
-
+  /* ── PRODUCT IMAGE (in flow — gives slide its height, matches source) ── */
   .multi-slide__image,
   .multi-slide__image-container > svg {
+    display: block;
     width: 100%;
-    height: 100%;
     object-fit: cover;
     object-position: center center;
   }
 
-  /* ── BASE LAYER: Shop Now CTA ── */
+  /* ── BASE CTA ── */
   .multi-slide__shop-cta {
     display: block;
     max-width: 356px;
@@ -200,9 +187,9 @@
     background-image: var(--layover-bg);
     background-size: cover;
     background-position: center;
+    position: relative;
   }
 
-  /* Dark overlay for readability when a bg image is set */
   .multi-slide__layover--has-image::before {
     content: '';
     position: absolute;
@@ -317,27 +304,38 @@
 
   /* ── DESKTOP ── */
   @media screen and (min-width: 750px) {
-    /* Both layers fill the slide */
-    .multi-slide__base,
-    .multi-slide__layover {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
+    /* Image: in flow, explicit 540px height — matches source exactly */
+    .multi-slide__image {
+      height: 540px;
+      max-height: 540px;
     }
 
-    .multi-slide__base {
+    /* SVG placeholder same height */
+    .multi-slide__image-container > svg {
+      height: 540px;
+    }
+
+    /* Base CTA: absolute at bottom, z-index 1 (above image, below layover) */
+    .multi-slide__shop-cta {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 356px;
       z-index: 1;
     }
 
+    /* Layover: full cover, hidden by default, fades in on hover */
     .multi-slide__layover {
+      position: absolute;
+      inset: 0;
       z-index: 2;
       opacity: 0;
       pointer-events: none;
+      transition: opacity 0.35s ease;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: opacity 0.35s ease;
     }
 
     slideshow-slide:hover .multi-slide__layover {
@@ -345,7 +343,7 @@
       pointer-events: auto;
     }
 
-    /* White text for readability on dark/image backgrounds */
+    /* White text for readability over dark backgrounds */
     .multi-slide__layover .multi-slide__subheading,
     .multi-slide__layover .multi-slide__heading,
     .multi-slide__layover .multi-slide__description,
@@ -366,23 +364,7 @@
       padding: 0 10px;
     }
 
-    /* Image fills base */
-    .multi-slide__image-container {
-      position: absolute;
-      inset: 0;
-      height: 100%;
-    }
-
-    /* Shop Now pinned to bottom of slide */
-    .multi-slide__shop-cta {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 356px;
-    }
-
-    /* Layover button pinned to bottom */
+    /* Layover button: absolute at bottom (same y-position as base CTA) */
     .multi-slide__button {
       position: absolute;
       bottom: 20px;
@@ -402,7 +384,7 @@
     }
   }
 
-  /* Reduced motion: skip fade, show layover immediately */
+  /* Reduced motion: skip fade, layover always visible */
   @media screen and (min-width: 750px) and (prefers-reduced-motion: reduce) {
     .multi-slide__layover {
       transition: none;
@@ -413,13 +395,12 @@
 
   /* ── MOBILE ── */
   @media screen and (max-width: 749px) {
-    .multi-slide__image-container {
-      position: relative;
-      height: auto;
+    .multi-slide__image {
       aspect-ratio: 270 / 390;
+      height: auto;
     }
 
-    /* Base Shop Now hidden on mobile — layover has its own CTA */
+    /* Hide base CTA on mobile — layover's button is used instead */
     .multi-slide__shop-cta {
       display: none;
     }
