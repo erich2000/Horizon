@@ -1,0 +1,337 @@
+{% liquid
+  assign autoplay = section.settings.autoplay
+  assign show_arrows = true
+  if section.settings.icons_style == 'none' or section.blocks.size <= 1
+    assign show_arrows = false
+  endif
+%}
+
+{% if section.blocks.size > 1 %}
+  {% capture controls %}
+    {%- render 'slideshow-controls',
+      style: section.settings.slideshow_controls_style,
+      autoplay: autoplay,
+      item_count: section.blocks.size,
+      show_arrows: false,
+      arrows_on_media: true,
+      controls_on_media: false,
+      pagination_position: 'center',
+      icon_style: section.settings.icons_style
+    -%}
+  {% endcapture %}
+{% endif %}
+
+{% capture slides %}
+  {% content_for 'blocks' %}
+{% endcapture %}
+
+<div
+  class="multi-image-slideshow-section spacing-style section section--full-width color-{{ section.settings.color_scheme }}"
+  style="{% render 'spacing-padding', settings: section.settings %}; --slideshow-gap: {{ section.settings.slideshow_gap }}px;"
+>
+  <h2 class="visually-hidden">Featured products slideshow</h2>
+  {% render 'slideshow',
+    class: 'multi-image-slideshow',
+    controls: controls,
+    show_arrows: show_arrows,
+    icon_style: section.settings.icons_style,
+    icon_shape: section.settings.icons_shape,
+    autoplay: autoplay,
+    autoplay_speed: section.settings.autoplay_speed,
+    slides: slides,
+    slide_count: section.blocks.size
+  %}
+</div>
+
+{% style %}
+  /* Scoped overrides using section ID for specificity */
+  .shopify-section-{{ section.id }} slideshow-slide {
+    border-inline-end: 1px solid currentColor;
+  }
+
+  .shopify-section-{{ section.id }} slideshow-slide:last-child {
+    border-inline-end: none;
+  }
+
+  /* Arrow shape overrides */
+  .shopify-section-{{ section.id }} .slideshow-control--shape-circle {
+    background-color: #fff;
+    color: #00000E;
+    border: 1px solid #000;
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    min-height: 40px;
+  }
+
+  .shopify-section-{{ section.id }} .slideshow-control--shape-circle:hover {
+    background-color: #f5f5f5;
+  }
+
+  /* Dot overrides */
+  .shopify-section-{{ section.id }} slideshow-controls:has(.slideshow-controls__dots) {
+    mix-blend-mode: normal;
+  }
+
+  .shopify-section-{{ section.id }} .slideshow-controls__dots button::after {
+    background-color: #00000E;
+    box-shadow: none;
+  }
+
+  .shopify-section-{{ section.id }} .slideshow-controls__dots button[aria-selected='true']::after {
+    background-color: #F3E200;
+  }
+{% endstyle %}
+
+{% stylesheet %}
+  .multi-image-slideshow-section {
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Desktop: 2-up layout with 50% width slides */
+  @media screen and (min-width: 750px) {
+    .multi-image-slideshow slideshow-slides {
+      min-height: 540px;
+    }
+
+    .multi-image-slideshow slideshow-slide {
+      width: calc(50% - var(--slideshow-gap, 0px) / 2);
+      flex-shrink: 0;
+      scroll-snap-align: start;
+      min-height: 540px;
+    }
+  }
+
+  /* Mobile: peek/hint layout */
+  @media screen and (max-width: 749px) {
+    .multi-image-slideshow {
+      gap: var(--slideshow-gap, 0);
+      grid-column: 1 / -1;
+    }
+
+    .multi-image-slideshow slideshow-slides {
+      padding-inline: var(--page-margin);
+      gap: min(var(--slideshow-gap, 0px), 10px);
+    }
+
+    .multi-image-slideshow slideshow-slide {
+      width: 85%;
+      flex-shrink: 0;
+      scroll-snap-align: start;
+    }
+
+    /* Hide boundary arrows on mobile */
+    slideshow-component.multi-image-slideshow:has(
+        slideshow-slide:first-child:not([aria-hidden='true'])
+      )
+      > slideshow-container
+      > slideshow-arrows
+      .slideshow-control--previous,
+    slideshow-component.multi-image-slideshow:has(
+        slideshow-slide:last-child:not([aria-hidden='true'])
+      )
+      > slideshow-container
+      > slideshow-arrows
+      .slideshow-control--next {
+      animation: none;
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+
+  /* Arrow visibility on hover */
+  .multi-image-slideshow slideshow-arrows .slideshow-control {
+    transition: opacity 0.3s ease;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Multi-image slideshow",
+  "class": "container-background-image",
+  "blocks": [
+    {
+      "type": "_multi-slide"
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Navigation"
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Auto-rotate slides",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "autoplay_speed",
+      "label": "Speed",
+      "min": 3,
+      "max": 7,
+      "step": 1,
+      "unit": "s",
+      "default": 5,
+      "visible_if": "{{ section.settings.autoplay }}"
+    },
+    {
+      "type": "select",
+      "id": "icons_style",
+      "label": "Arrows",
+      "options": [
+        {
+          "value": "arrow",
+          "label": "Arrows"
+        },
+        {
+          "value": "chevron",
+          "label": "Chevrons"
+        },
+        {
+          "value": "none",
+          "label": "None"
+        }
+      ],
+      "default": "chevron"
+    },
+    {
+      "type": "select",
+      "id": "icons_shape",
+      "label": "Arrow background",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "circle",
+          "label": "Circle"
+        },
+        {
+          "value": "square",
+          "label": "Square"
+        }
+      ],
+      "default": "circle",
+      "visible_if": "{{ section.settings.icons_style != 'none' }}"
+    },
+    {
+      "type": "select",
+      "id": "slideshow_controls_style",
+      "label": "Pagination",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "dots",
+          "label": "Dots"
+        },
+        {
+          "value": "counter",
+          "label": "Counter"
+        }
+      ],
+      "default": "dots"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "slideshow_gap",
+      "label": "Gap",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "primary"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Multi-image slideshow",
+      "category": "t:categories.banners",
+      "blocks": {
+        "slide_1": {
+          "type": "_multi-slide",
+          "settings": {
+            "subheading": "Post Workout Recovery",
+            "heading": "Whey Protein",
+            "description": "25g of clean, delicious, fast-digesting whey protein to help your muscles recover from intense workouts",
+            "stat_1_value": "25g of",
+            "stat_1_label": "Protein",
+            "stat_2_value": "5.5g of",
+            "stat_2_label": "BCAA's",
+            "stat_3_value": "0g of",
+            "stat_3_label": "Added Sugar",
+            "button_text": "Shop Now"
+          }
+        },
+        "slide_2": {
+          "type": "_multi-slide",
+          "settings": {
+            "subheading": "Strength Support",
+            "heading": "Clean Creatine",
+            "description": "Build strength, endurance, and lean muscle mass with this workout essential when combined with a workout routine",
+            "stat_1_value": "5g of",
+            "stat_1_label": "Creatine",
+            "stat_2_value": "0g of",
+            "stat_2_label": "Fillers",
+            "stat_3_value": "45",
+            "stat_3_label": "Servings",
+            "button_text": "Shop Now"
+          }
+        }
+      },
+      "block_order": ["slide_1", "slide_2"],
+      "settings": {
+        "autoplay": true,
+        "autoplay_speed": 5,
+        "icons_style": "chevron",
+        "icons_shape": "circle",
+        "slideshow_controls_style": "dots",
+        "slideshow_gap": 0
+      }
+    }
+  ]
+}
+{% endschema %}
