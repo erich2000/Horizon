@@ -179,6 +179,152 @@
         "padding-block-end": 25
       }
     },
+    "multi_image_slideshow_EEbpUm": {
+      "type": "multi-image-slideshow",
+      "blocks": {
+        "multi_slide_9jdLHj": {
+          "type": "_multi-slide",
+          "settings": {
+            "product": "chocolate-protein-powder",
+            "image": "shopify://shop_images/ascent-protein-chocolate-1-720x720-689230487c8b.jpg",
+            "layover_image": "shopify://shop_images/Frame_213_720x720_copy_720x720_7dcca5b0-38a3-4b75-90a2-634efbd0d34a.png",
+            "shop_now_text": "Shop Now",
+            "button_link": "",
+            "subheading": "Post Workout Recovery",
+            "heading": "Whey Protein",
+            "description": "25g of clean, delicious, fast-digesting whey protein to help your muscles recover from intense workouts",
+            "stat_1_value": "25g of",
+            "stat_1_label": "Protein",
+            "stat_2_value": "5.5g of",
+            "stat_2_label": "BCAA's",
+            "stat_3_value": "0g of",
+            "stat_3_label": "Added Sugar",
+            "button_text": "Shop Now"
+          },
+          "blocks": {}
+        },
+        "multi_slide_LYknB3": {
+          "type": "_multi-slide",
+          "settings": {
+            "product": "clean-creatine-45-servings",
+            "image": "shopify://shop_images/cleancreatine-22-1-720x720-118827be0765.jpg",
+            "layover_image": "shopify://shop_images/Frame_213_720x720_copy_720x720_7dcca5b0-38a3-4b75-90a2-634efbd0d34a.png",
+            "shop_now_text": "Shop Now",
+            "button_link": "",
+            "subheading": "Strength Support",
+            "heading": "Clean Creatine",
+            "description": "Build strength, endurance, and lean muscle mass with this workout essential when combined with a workout routine",
+            "stat_1_value": "5g of",
+            "stat_1_label": "Creatine",
+            "stat_2_value": "0g of",
+            "stat_2_label": "Fillers",
+            "stat_3_value": "45",
+            "stat_3_label": "Servings",
+            "button_text": "Shop Now"
+          },
+          "blocks": {}
+        },
+        "multi_slide_Q6aDYg": {
+          "type": "_multi-slide",
+          "name": "Multi-image slide",
+          "settings": {
+            "product": "",
+            "shop_now_text": "Shop Now",
+            "button_link": "",
+            "subheading": "Post Workout Recovery",
+            "heading": "Whey Protein",
+            "description": "25g of clean, delicious, fast-digesting whey protein to help your muscles recover from intense workouts",
+            "stat_1_value": "25g of",
+            "stat_1_label": "Protein",
+            "stat_2_value": "5.5g of",
+            "stat_2_label": "BCAA's",
+            "stat_3_value": "0g of",
+            "stat_3_label": "Added Sugar",
+            "button_text": "Shop Now"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "multi_slide_9jdLHj",
+        "multi_slide_LYknB3",
+        "multi_slide_Q6aDYg"
+      ],
+      "name": "Multi-image slideshow",
+      "settings": {
+        "autoplay": true,
+        "autoplay_speed": 5,
+        "icons_style": "chevron",
+        "icons_shape": "circle",
+        "slideshow_controls_style": "dots",
+        "slideshow_gap": 0,
+        "color_scheme": "",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "logo_gallery_G9nyhr": {
+      "type": "logo-gallery",
+      "blocks": {
+        "logo_UJGfY3": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/Shape_3024x_72c8a379-9d87-4ed4-b76e-7a52a3ddc5a2.png"
+          }
+        },
+        "logo_mLHf7C": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/Forbes_1_3024x_09bc2057-bd35-4d2b-b42c-cf5462d4e7a2.png"
+          }
+        },
+        "logo_QA8TWM": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/Men_s_Health_3024x_0f535496-7e8b-4e56-99c8-7fb900385efa.png"
+          }
+        },
+        "logo_nbYpRm": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/womens-health-magazine-logo_3024x_f330155c-ad19-47b0-b048-5189c655eeae.png"
+          }
+        },
+        "logo_a7cMz8": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/Outside_3024x_fb0cafec-9880-4330-af87-58210673d52c.png"
+          }
+        },
+        "logo_x3EJtK": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/Self_3024x_b1ef9634-568f-4b4f-855c-312d64ec5b21.png"
+          }
+        }
+      },
+      "block_order": [
+        "logo_UJGfY3",
+        "logo_mLHf7C",
+        "logo_QA8TWM",
+        "logo_nbYpRm",
+        "logo_a7cMz8",
+        "logo_x3EJtK"
+      ],
+      "name": "Logo gallery",
+      "settings": {
+        "heading": "As Seen In",
+        "heading_font_size": 46,
+        "max_logo_height": 40,
+        "max_logo_width_mobile": 150,
+        "gap": 50,
+        "gap_mobile": 20,
+        "section_width": "page-width",
+        "color_scheme": "",
+        "padding-block-start": 80,
+        "padding-block-end": 80
+      }
+    },
     "product_list_fa6P9H": {
       "type": "product-list",
       "blocks": {
@@ -372,67 +518,13 @@
         "padding-block-start": 48,
         "padding-block-end": 48
       }
-    },
-    "multi_image_slideshow_EEbpUm": {
-      "type": "multi-image-slideshow",
-      "blocks": {
-        "multi_slide_9jdLHj": {
-          "type": "_multi-slide",
-          "settings": {
-            "subheading": "Post Workout Recovery",
-            "heading": "Whey Protein",
-            "description": "25g of clean, delicious, fast-digesting whey protein to help your muscles recover from intense workouts",
-            "stat_1_value": "25g of",
-            "stat_1_label": "Protein",
-            "stat_2_value": "5.5g of",
-            "stat_2_label": "BCAA's",
-            "stat_3_value": "0g of",
-            "stat_3_label": "Added Sugar",
-            "button_text": "Shop Now",
-            "button_link": ""
-          },
-          "blocks": {}
-        },
-        "multi_slide_LYknB3": {
-          "type": "_multi-slide",
-          "settings": {
-            "subheading": "Strength Support",
-            "heading": "Clean Creatine",
-            "description": "Build strength, endurance, and lean muscle mass with this workout essential when combined with a workout routine",
-            "stat_1_value": "5g of",
-            "stat_1_label": "Creatine",
-            "stat_2_value": "0g of",
-            "stat_2_label": "Fillers",
-            "stat_3_value": "45",
-            "stat_3_label": "Servings",
-            "button_text": "Shop Now",
-            "button_link": ""
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "multi_slide_9jdLHj",
-        "multi_slide_LYknB3"
-      ],
-      "name": "Multi-image slideshow",
-      "settings": {
-        "autoplay": true,
-        "autoplay_speed": 5,
-        "icons_style": "chevron",
-        "icons_shape": "circle",
-        "slideshow_controls_style": "dots",
-        "slideshow_gap": 0,
-        "color_scheme": "",
-        "padding-block-start": 0,
-        "padding-block-end": 0
-      }
     }
   },
   "order": [
     "hero_jVaWmY",
     "value_props_slideshow",
     "multi_image_slideshow_EEbpUm",
+    "logo_gallery_G9nyhr",
     "product_list_fa6P9H"
   ]
 }
