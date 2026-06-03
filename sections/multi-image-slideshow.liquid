@@ -53,6 +53,12 @@
     border-inline-end: none;
   }
 
+  /* Arrows: always visible (source site keeps them permanently shown) */
+  .shopify-section-{{ section.id }} slideshow-arrows .slideshow-control {
+    opacity: 1;
+    animation: none;
+  }
+
   /* Arrow shape overrides */
   .shopify-section-{{ section.id }} .slideshow-control--shape-circle {
     background-color: #fff;
