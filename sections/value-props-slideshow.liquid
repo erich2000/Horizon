@@ -6,7 +6,7 @@
 
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
 <div
-  class="value-props-slideshow section section--full-width color-{{ section.settings.color_scheme }}"
+  class="value-props-slideshow spacing-style section section--full-width color-{{ section.settings.color_scheme }}"
   style="
     {% render 'spacing-padding', settings: section.settings %};
     --value-prop-icon-size: {{ section.settings.icon_size }}px;
@@ -48,7 +48,7 @@
 
 {% schema %}
 {
-  "name": "Value props slideshow",
+  "name": "Multicolumn Icons w/ Text",
   "tag": "section",
   "class": "value-props-slideshow-wrapper section-wrapper",
   "blocks": [
@@ -95,7 +95,7 @@
   ],
   "presets": [
     {
-      "name": "Value props slideshow",
+      "name": "Multicolumn Icons w/ Text",
       "blocks": {
         "slide_1": {
           "type": "_value-prop-slide",
