@@ -121,362 +121,62 @@
         "padding-block-end": 40
       }
     },
-    "usps_bar": {
-      "type": "section",
+    "value_props_slideshow": {
+      "type": "value-props-slideshow",
       "blocks": {
-        "group_1": {
-          "type": "group",
+        "slide_1": {
+          "type": "_value-prop-slide",
           "settings": {
-            "content_direction": "column",
-            "vertical_on_mobile": true,
-            "horizontal_alignment": "flex-start",
-            "vertical_alignment": "center",
-            "align_baseline": false,
-            "horizontal_alignment_flex_direction_column": "center",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 8,
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "custom_height": 100,
-            "inherit_color_scheme": true,
-            "color_scheme": "",
-            "background_media": "none",
-            "video_position": "cover",
-            "background_image_position": "cover",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "toggle_overlay": false,
-            "overlay_color": "#00000026",
-            "overlay_style": "solid",
-            "gradient_direction": "to top",
-            "link": "",
-            "open_in_new_tab": false,
-            "placeholder": "",
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
+            "image": "shopify://shop_images/vector-1-27d29b79cfd0.png",
+            "title": "Zero Artificial Flavors & Sweeteners"
           },
-          "blocks": {
-            "icon_1": {
-              "type": "icon",
-              "settings": {
-                "icon": "leaf",
-                "width": 32,
-                "link": "",
-                "open_in_new_tab": false
-              },
-              "blocks": {}
-            },
-            "text_1": {
-              "type": "text",
-              "settings": {
-                "text": "<p>Zero Artificial Flavors & Sweeteners</p>",
-                "width": "100%",
-                "max_width": "normal",
-                "alignment": "center",
-                "type_preset": "h6",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "uppercase",
-                "wrap": "pretty",
-                "color": "var(--color-foreground)",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "icon_1",
-            "text_1"
-          ]
+          "blocks": {}
         },
-        "group_2": {
-          "type": "group",
+        "slide_2": {
+          "type": "_value-prop-slide",
           "settings": {
-            "content_direction": "column",
-            "vertical_on_mobile": true,
-            "horizontal_alignment": "flex-start",
-            "vertical_alignment": "center",
-            "align_baseline": false,
-            "horizontal_alignment_flex_direction_column": "center",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 8,
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "custom_height": 100,
-            "inherit_color_scheme": true,
-            "color_scheme": "",
-            "background_media": "none",
-            "video_position": "cover",
-            "background_image_position": "cover",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "toggle_overlay": false,
-            "overlay_color": "#00000026",
-            "overlay_style": "solid",
-            "gradient_direction": "to top",
-            "link": "",
-            "open_in_new_tab": false,
-            "placeholder": "",
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
+            "image": "shopify://shop_images/runner-a8f80a22f14c.png",
+            "title": "Support Your Muscle Health"
           },
-          "blocks": {
-            "icon_2": {
-              "type": "icon",
-              "settings": {
-                "icon": "heart",
-                "width": 32,
-                "link": "",
-                "open_in_new_tab": false
-              },
-              "blocks": {}
-            },
-            "text_2": {
-              "type": "text",
-              "settings": {
-                "text": "<p>Made to Boost Your Health</p>",
-                "width": "100%",
-                "max_width": "normal",
-                "alignment": "center",
-                "type_preset": "h6",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "uppercase",
-                "wrap": "pretty",
-                "color": "var(--color-foreground)",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "icon_2",
-            "text_2"
-          ]
+          "blocks": {}
         },
-        "group_3": {
-          "type": "group",
+        "slide_3": {
+          "type": "_value-prop-slide",
           "settings": {
-            "content_direction": "column",
-            "vertical_on_mobile": true,
-            "horizontal_alignment": "flex-start",
-            "vertical_alignment": "center",
-            "align_baseline": false,
-            "horizontal_alignment_flex_direction_column": "center",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 8,
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "custom_height": 100,
-            "inherit_color_scheme": true,
-            "color_scheme": "",
-            "background_media": "none",
-            "video_position": "cover",
-            "background_image_position": "cover",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "toggle_overlay": false,
-            "overlay_color": "#00000026",
-            "overlay_style": "solid",
-            "gradient_direction": "to top",
-            "link": "",
-            "open_in_new_tab": false,
-            "placeholder": "",
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
+            "image": "shopify://shop_images/battery-70a21c653332.png",
+            "title": "Fuel Your Fitness Goals"
           },
-          "blocks": {
-            "icon_3": {
-              "type": "icon",
-              "settings": {
-                "icon": "lightning_bolt",
-                "width": 32,
-                "link": "",
-                "open_in_new_tab": false
-              },
-              "blocks": {}
-            },
-            "text_3": {
-              "type": "text",
-              "settings": {
-                "text": "<p>High Protein Supporting Recovery</p>",
-                "width": "100%",
-                "max_width": "normal",
-                "alignment": "center",
-                "type_preset": "h6",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "uppercase",
-                "wrap": "pretty",
-                "color": "var(--color-foreground)",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "icon_3",
-            "text_3"
-          ]
+          "blocks": {}
         },
-        "group_4": {
-          "type": "group",
+        "slide_4": {
+          "type": "_value-prop-slide",
           "settings": {
-            "content_direction": "column",
-            "vertical_on_mobile": true,
-            "horizontal_alignment": "flex-start",
-            "vertical_alignment": "center",
-            "align_baseline": false,
-            "horizontal_alignment_flex_direction_column": "center",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 8,
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "custom_height": 100,
-            "inherit_color_scheme": true,
-            "color_scheme": "",
-            "background_media": "none",
-            "video_position": "cover",
-            "background_image_position": "cover",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "toggle_overlay": false,
-            "overlay_color": "#00000026",
-            "overlay_style": "solid",
-            "gradient_direction": "to top",
-            "link": "",
-            "open_in_new_tab": false,
-            "placeholder": "",
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
+            "image": "shopify://shop_images/stopwatch-f55f861f092c.png",
+            "title": "Post-Workout Recovery"
           },
-          "blocks": {
-            "icon_4": {
-              "type": "icon",
-              "settings": {
-                "icon": "check_box",
-                "width": 32,
-                "link": "",
-                "open_in_new_tab": false
-              },
-              "blocks": {}
-            },
-            "text_4": {
-              "type": "text",
-              "settings": {
-                "text": "<p>Independently Tested</p>",
-                "width": "100%",
-                "max_width": "normal",
-                "alignment": "center",
-                "type_preset": "h6",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "uppercase",
-                "wrap": "pretty",
-                "color": "var(--color-foreground)",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            }
+          "blocks": {}
+        },
+        "slide_5": {
+          "type": "_value-prop-slide",
+          "settings": {
+            "image": "shopify://shop_images/vanilla-2-e80a9258f538.png",
+            "title": "Delicious Flavors You Will Love"
           },
-          "block_order": [
-            "icon_4",
-            "text_4"
-          ]
+          "blocks": {}
         }
       },
       "block_order": [
-        "group_1",
-        "group_2",
-        "group_3",
-        "group_4"
+        "slide_1",
+        "slide_2",
+        "slide_3",
+        "slide_4",
+        "slide_5"
       ],
       "settings": {
-        "content_direction": "row",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "space-between",
-        "vertical_alignment": "center",
-        "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "flex-start",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 24,
-        "section_width": "page-width",
-        "section_height": "",
-        "section_height_custom": 50,
-        "color_scheme": "scheme-5",
-        "background_media": "none",
-        "video_position": "cover",
-        "background_image_position": "cover",
-        "border": "none",
-        "border_width": 1,
-        "border_opacity": 100,
-        "border_radius": 0,
-        "toggle_overlay": false,
-        "overlay_color": "#00000026",
-        "overlay_style": "solid",
-        "gradient_direction": "to top",
-        "padding-block-start": 20,
-        "padding-block-end": 20
+        "color_scheme": "scheme-8",
+        "icon_size": 32,
+        "padding-block-start": 30,
+        "padding-block-end": 25
       }
     },
     "product_list_fa6P9H": {
@@ -672,64 +372,10 @@
         "padding-block-start": 48,
         "padding-block-end": 48
       }
-    },
-    "value_props_slideshow": {
-      "type": "value-props-slideshow",
-      "blocks": {
-        "slide_1": {
-          "type": "_value-prop-slide",
-          "settings": {
-            "image": "shopify://shop_images/vector-1-27d29b79cfd0.png",
-            "title": "Zero Artificial Flavors & Sweeteners"
-          }
-        },
-        "slide_2": {
-          "type": "_value-prop-slide",
-          "settings": {
-            "image": "shopify://shop_images/runner-a8f80a22f14c.png",
-            "title": "Support Your Muscle Health"
-          }
-        },
-        "slide_3": {
-          "type": "_value-prop-slide",
-          "settings": {
-            "image": "shopify://shop_images/battery-70a21c653332.png",
-            "title": "Fuel Your Fitness Goals"
-          }
-        },
-        "slide_4": {
-          "type": "_value-prop-slide",
-          "settings": {
-            "image": "shopify://shop_images/stopwatch-f55f861f092c.png",
-            "title": "Post-Workout Recovery"
-          }
-        },
-        "slide_5": {
-          "type": "_value-prop-slide",
-          "settings": {
-            "image": "shopify://shop_images/vanilla-2-e80a9258f538.png",
-            "title": "Delicious Flavors You Will Love"
-          }
-        }
-      },
-      "block_order": [
-        "slide_1",
-        "slide_2",
-        "slide_3",
-        "slide_4",
-        "slide_5"
-      ],
-      "settings": {
-        "color_scheme": "scheme-8",
-        "icon_size": 32,
-        "padding-block-start": 6,
-        "padding-block-end": 6
-      }
     }
   },
   "order": [
     "hero_jVaWmY",
-    "usps_bar",
     "value_props_slideshow",
     "product_list_fa6P9H"
   ]
