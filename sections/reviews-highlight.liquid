@@ -218,6 +218,15 @@
     }
   }
 
+  /* Hide inactive autoplay button to prevent ghost box */
+  .reviews-highlight slideshow-component[autoplay]:not([paused]) .icon-play {
+    display: none;
+  }
+
+  .reviews-highlight slideshow-component[autoplay][paused] .icon-pause {
+    display: none;
+  }
+
   @media screen and (max-width: 749px) {
     .reviews-highlight__heading {
       font-size: 23px;
