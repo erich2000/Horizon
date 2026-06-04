@@ -1,0 +1,374 @@
+{% liquid
+  assign section_width_class = 'section--' | append: section.settings.section_width
+%}
+
+{% style %}
+  .shopify-section-{{ section.id }} {
+    --card-count: {{ section.blocks.size }};
+    --card-height-desktop: {{ section.settings.card_height_desktop | default: 720 }}px;
+    --card-height-mobile: {{ section.settings.card_height_mobile | default: 585 }}px;
+  }
+{% endstyle %}
+
+{% capture slides %}
+  {% for block in section.blocks %}
+    <slideshow-slide {{ block.shopify_attributes }}>
+      <div class="content-cards__card">
+        {% if block.settings.image != blank %}
+          {% liquid
+            assign sizes_val = '(min-width: 750px) calc(100vw / ' | append: section.blocks.size | append: '), 100vw'
+          %}
+          {{
+            block.settings.image
+            | image_url: width: block.settings.image.width
+            | image_tag:
+              sizes: sizes_val,
+              widths: '375,550,750,1100,1500,1780,2000',
+              loading: 'lazy',
+              class: 'content-cards__image',
+              alt: block.settings.image.alt
+          }}
+        {% else %}
+          <div class="content-cards__placeholder"></div>
+        {% endif %}
+        <div class="content-cards__overlay">
+          {% if block.settings.subheader != blank %}
+            <p class="content-cards__subheader">{{ block.settings.subheader }}</p>
+          {% endif %}
+          {% if block.settings.heading != blank %}
+            <h3 class="content-cards__heading">{{ block.settings.heading }}</h3>
+          {% endif %}
+          {% if block.settings.button_text != blank %}
+            <a
+              {% if block.settings.button_link != blank %}
+                href="{{ block.settings.button_link }}"
+              {% endif %}
+              class="content-cards__button"
+            >
+              {{- block.settings.button_text -}}
+            </a>
+          {% endif %}
+        </div>
+      </div>
+    </slideshow-slide>
+  {% endfor %}
+{% endcapture %}
+
+{% capture controls %}
+  {%- render 'slideshow-controls',
+    style: 'dots',
+    item_count: section.blocks.size,
+    show_arrows: false,
+    pagination_position: 'center'
+  -%}
+{% endcapture %}
+
+<div
+  class="section {{ section_width_class }} color-{{ section.settings.color_scheme }} content-cards-section"
+  style="{% render 'spacing-padding', settings: section.settings %}"
+>
+  {% render 'slideshow',
+    slides: slides,
+    controls: controls,
+    slide_count: section.blocks.size,
+    class: 'content-cards__slideshow',
+    infinite: true,
+    auto_hide_controls: true
+  %}
+</div>
+
+{% stylesheet %}
+  /* Card container */
+  .content-cards__card {
+    position: relative;
+    overflow: hidden;
+    min-height: var(--card-height-mobile);
+  }
+
+  @media screen and (min-width: 750px) {
+    .content-cards__card {
+      min-height: var(--card-height-desktop);
+    }
+  }
+
+  /* Card image */
+  .content-cards__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Placeholder when no image */
+  .content-cards__placeholder {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0, 0, 0);
+  }
+
+  /* Overlay */
+  .content-cards__overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(0, 0, 0);
+    padding: 15px 20px;
+    width: 90%;
+    box-sizing: border-box;
+    z-index: 3;
+  }
+
+  @media screen and (min-width: 750px) {
+    .content-cards__overlay {
+      width: 70%;
+    }
+  }
+
+  /* Subheader */
+  .content-cards__subheader {
+    font-family: var(--font-subheading--family);
+    font-size: 13px;
+    line-height: 21px;
+    letter-spacing: 2.6px;
+    text-transform: uppercase;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    margin: 0 0 8px 0;
+  }
+
+  @media screen and (min-width: 750px) {
+    .content-cards__subheader {
+      font-size: 19px;
+      line-height: 30px;
+      letter-spacing: 3px;
+    }
+  }
+
+  /* Heading */
+  .content-cards__heading {
+    font-family: var(--font-heading--family);
+    font-size: 33px;
+    font-weight: 600;
+    line-height: 38px;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    margin: 0 0 10px 0;
+  }
+
+  @media screen and (min-width: 750px) {
+    .content-cards__heading {
+      line-height: 40px;
+      margin-bottom: 20px;
+    }
+  }
+
+  /* Button (CTA) */
+  .content-cards__button {
+    display: inline-block;
+    padding: 12px 20px 10px 20px;
+    min-width: 90px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 14);
+    border: 1px solid rgb(0, 0, 14);
+    border-radius: 35px;
+    font-family: var(--font-body--family);
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+
+  .content-cards__button:hover {
+    background-color: rgb(240, 222, 0);
+  }
+
+  /* Desktop grid override — show all cards side by side */
+  @media screen and (min-width: 750px) {
+    .content-cards__slideshow slideshow-slides {
+      display: grid;
+      grid-template-columns: repeat(var(--card-count, 3), 1fr);
+      overflow: visible;
+      scroll-snap-type: none;
+      gap: 0;
+    }
+
+    .content-cards__slideshow slideshow-slide {
+      width: auto;
+    }
+
+    .content-cards__slideshow slideshow-controls {
+      display: none;
+    }
+  }
+
+  /* Mobile single-slide carousel */
+  @media screen and (max-width: 749px) {
+    .content-cards__slideshow slideshow-slide {
+      flex: 0 0 100%;
+      width: 100%;
+    }
+  }
+
+  /* Section-level background */
+  .content-cards-section slideshow-container {
+    background-color: transparent;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Content cards",
+  "class": "content-cards",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Section width",
+      "options": [
+        {
+          "value": "page-width",
+          "label": "Page width"
+        },
+        {
+          "value": "full-width",
+          "label": "Full width"
+        }
+      ],
+      "default": "full-width"
+    },
+    {
+      "type": "number",
+      "id": "card_height_desktop",
+      "label": "Card height (desktop)",
+      "default": 720
+    },
+    {
+      "type": "number",
+      "id": "card_height_mobile",
+      "label": "Card height (mobile)",
+      "default": 585
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top padding",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 0,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 0,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Background image"
+        },
+        {
+          "type": "text",
+          "id": "subheader",
+          "label": "Subheader",
+          "default": "OUR PROCESS"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "What is Native Whey?"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button text",
+          "default": "LEARN MORE"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Content cards",
+      "blocks": {
+        "card_1": {
+          "type": "card",
+          "settings": {
+            "subheader": "OUR PROCESS",
+            "heading": "What is Native Whey?",
+            "button_text": "LEARN MORE"
+          }
+        },
+        "card_2": {
+          "type": "card",
+          "settings": {
+            "subheader": "NUTRITION & FITNESS",
+            "heading": "How much protein do you need?",
+            "button_text": "LEARN MORE"
+          }
+        },
+        "card_3": {
+          "type": "card",
+          "settings": {
+            "subheader": "TRUSTED BY PROS",
+            "heading": "Read about Ascent's professional athlete team",
+            "button_text": "LEARN MORE"
+          }
+        }
+      },
+      "block_order": ["card_1", "card_2", "card_3"]
+    }
+  ]
+}
+{% endschema %}
