@@ -677,6 +677,56 @@
         "padding-block-start": 48,
         "padding-block-end": 48
       }
+    },
+    "ugc_grid_rnVhNc": {
+      "type": "ugc-grid",
+      "blocks": {
+        "card_arkkCY": {
+          "type": "card",
+          "settings": {
+            "caption": "Huge shout out to @ascentprotein for supporting my journey for the last 6 YEARS. No matter what, the quality is always top-notch.",
+            "link": "https://www.instagram.com/p/C9M8M5UOaGM/"
+          }
+        },
+        "card_TNeBfY": {
+          "type": "card",
+          "settings": {
+            "caption": "Part II: bike ride — 122 miles, 7000' of gain, 7 hour and 34 minutes. Thanks @ascent_protein!",
+            "link": ""
+          }
+        },
+        "card_wjTtN6": {
+          "type": "card",
+          "settings": {
+            "caption": "@ascent_protein with me every step of the way — keeping me right and helping me bounce back stronger.",
+            "link": ""
+          }
+        },
+        "card_JYfDX9": {
+          "type": "card",
+          "settings": {
+            "caption": "I choose Ascent products because I know exactly what goes into them - all CLEAN ingredients!!",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "card_arkkCY",
+        "card_TNeBfY",
+        "card_wjTtN6",
+        "card_JYfDX9"
+      ],
+      "name": "UGC grid",
+      "settings": {
+        "heading": "Apply To Become an Ascent Athlete",
+        "description": "<p>Love Ascent and want to represent the hardest working brand online? <a href=\"/pages/ambassador-application\"><strong>Apply</strong></a> to become an Ascent Athlete!</p>",
+        "social_handle_text": "@ascent_protein",
+        "social_handle_url": "",
+        "section_width": "full-width",
+        "color_scheme": "",
+        "padding-block-start": 94,
+        "padding-block-end": 94
+      }
     }
   },
   "order": [
@@ -687,6 +737,7 @@
     "full_width_info_banner",
     "reviews_highlight_TMCtxU",
     "content_cards_wUXrDJ",
-    "product_list_fa6P9H"
+    "product_list_fa6P9H",
+    "ugc_grid_rnVhNc"
   ]
 }
