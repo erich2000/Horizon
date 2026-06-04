@@ -33,13 +33,29 @@
         <div class="ugc-grid__card" {{ block.shopify_attributes }}>
           <div class="ugc-grid__card-media">
             {% if block.settings.image_url != blank %}
-              <img
-                src="{{ block.settings.image_url }}"
-                alt="{{ block.settings.caption | escape | truncate: 80 }}"
-                class="ugc-grid__image"
-                loading="lazy"
-                referrerpolicy="no-referrer"
-              >
+              {% if block.settings.image_url contains 'instagram.com/p/' %}
+                {%- assign _ig_parts = block.settings.image_url | split: '/p/' -%}
+                {%- assign _ig_code = _ig_parts[1] | split: '/' | first -%}
+                <div class="ugc-grid__ig-wrapper">
+                  <iframe
+                    src="https://www.instagram.com/p/{{ _ig_code }}/embed/"
+                    class="ugc-grid__ig-embed"
+                    frameborder="0"
+                    scrolling="no"
+                    allowtransparency="true"
+                    loading="lazy"
+                    title="Instagram post"
+                  ></iframe>
+                </div>
+              {% else %}
+                <img
+                  src="{{ block.settings.image_url }}"
+                  alt="{{ block.settings.caption | truncate: 80 | escape }}"
+                  class="ugc-grid__image"
+                  loading="lazy"
+                  referrerpolicy="no-referrer"
+                >
+              {% endif %}
             {% elsif block.settings.image != blank %}
               {%- assign sizes_val = '(min-width: 750px) 25vw, 50vw' -%}
               {{
@@ -212,6 +228,25 @@
     width: 100%;
     aspect-ratio: 1 / 1;
     background-color: rgb(var(--color-foreground-rgb) / var(--opacity-5-15));
+  }
+
+  /* Instagram embed wrapper — crops to square, hiding the profile header */
+  .ugc-grid__ig-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+  }
+
+  /* Iframe offset: -62px hides the profile pic/username row at the top */
+  .ugc-grid__ig-embed {
+    position: absolute;
+    top: -62px;
+    left: -1px;
+    width: calc(100% + 2px);
+    height: calc(100% + 130px);
+    border: none;
+    pointer-events: none;
   }
 
   /* Caption overlay — hidden by default */
@@ -445,7 +480,7 @@
           "type": "text",
           "id": "image_url",
           "label": "External image URL",
-          "info": "Paste an Instagram (or other) image URL. Takes priority over the image picker below."
+          "info": "Paste an Instagram post URL (e.g. instagram.com/p/…) or a direct image URL. Takes priority over the image picker below."
         },
         {
           "type": "image_picker",
