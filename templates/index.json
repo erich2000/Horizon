@@ -572,6 +572,64 @@
         "padding-block-start": 48,
         "padding-block-end": 48
       }
+    },
+    "reviews_highlight_TMCtxU": {
+      "type": "reviews-highlight",
+      "blocks": {
+        "review_MVPQBn": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "quote": "Best protein powder I've tried! I've tried so many brands from Optimum Nutrition, Ghost, Podium, 1st Phorm and more. This one takes the cake and I'll never go back to any other brand.",
+            "read_more_url": "",
+            "author": "Sydney"
+          }
+        },
+        "review_7MNzHB": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "quote": "Best protein powder out there! Our doctor told my husband to have more protein in his diet. His friend recommended Ascent and he has been using it ever since.",
+            "read_more_url": "",
+            "author": "Emma S."
+          }
+        },
+        "review_3w6Dp9": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "quote": "It's not easy to find a great (clean) protein powder at a decent price. I found Ascent at the grocery store and decided to give it a try. It was the best decision I've made!",
+            "read_more_url": "",
+            "author": "Katie"
+          }
+        },
+        "review_CtitGe": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "quote": "The BEST protein powder! This protein powder has been my go-to choice for over a year now and I have not been disappointed.",
+            "read_more_url": "",
+            "author": "Ashley W."
+          }
+        }
+      },
+      "block_order": [
+        "review_MVPQBn",
+        "review_7MNzHB",
+        "review_3w6Dp9",
+        "review_CtitGe"
+      ],
+      "name": "Reviews highlight",
+      "settings": {
+        "heading": "Reviews",
+        "autoplay": true,
+        "autoplay_speed": 5,
+        "dot_active_color": "#f3e200",
+        "color_scheme": "",
+        "section_width": "page-width",
+        "padding-block-start": 100,
+        "padding-block-end": 100
+      }
     }
   },
   "order": [
@@ -580,6 +638,7 @@
     "multi_image_slideshow_EEbpUm",
     "logo_gallery_G9nyhr",
     "full_width_info_banner",
+    "reviews_highlight_TMCtxU",
     "product_list_fa6P9H"
   ]
 }
