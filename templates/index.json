@@ -258,7 +258,7 @@
         "icons_shape": "circle",
         "slideshow_controls_style": "dots",
         "slideshow_gap": 0,
-        "color_scheme": "",
+        "color_scheme": "scheme-7",
         "padding-block-start": 0,
         "padding-block-end": 0
       }
@@ -323,6 +323,60 @@
         "color_scheme": "",
         "padding-block-start": 80,
         "padding-block-end": 80
+      }
+    },
+    "full_width_info_banner": {
+      "type": "full-width-info-banner",
+      "blocks": {
+        "prop_1": {
+          "type": "prop-item",
+          "settings": {
+            "icon": "shopify://shop_images/Vector_small_4f650697-a2ed-4c3e-960e-1ea04b52cf3a.png",
+            "text": "Zero Artificial Flavors & Sweeteners"
+          }
+        },
+        "prop_2": {
+          "type": "prop-item",
+          "settings": {
+            "icon": "shopify://shop_images/Check_small_3a21ae35-9698-4ce3-9dc4-9e1f7634eaf4.png",
+            "text": "Backed by Science"
+          }
+        },
+        "prop_3": {
+          "type": "prop-item",
+          "settings": {
+            "icon": "shopify://shop_images/Informed_Sport_small_3ea84030-27e3-4649-9cd7-965d3b160fe0.png",
+            "text": "3rd Party Tested"
+          }
+        },
+        "prop_4": {
+          "type": "prop-item",
+          "settings": {
+            "icon": "shopify://shop_images/vanillablack_small_e170c804-2db5-4a43-8b93-6b342400ded8.png",
+            "text": "Minimal Ingredients"
+          }
+        }
+      },
+      "block_order": [
+        "prop_1",
+        "prop_2",
+        "prop_3",
+        "prop_4"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/ascn_process_1728x_953eb800-332a-46dc-990d-eca6fcbdf062.png",
+        "image_mobile": "shopify://shop_images/proof-Ascent_Protein_Still_Life1360-Edit_360x_2e1ab19f-a11c-4303-ad64-575b12a70299.png",
+        "background_color": "#111111",
+        "min_height": 750,
+        "min_height_mobile": 700,
+        "content_position": "center-left",
+        "subtitle": "",
+        "heading": "clean products that work as hard as you do",
+        "panel_padding": 40,
+        "panel_padding_mobile": 30,
+        "color_scheme": "scheme-1",
+        "padding-block-start": 0,
+        "padding-block-end": 0
       }
     },
     "product_list_fa6P9H": {
@@ -518,53 +572,6 @@
         "padding-block-start": 48,
         "padding-block-end": 48
       }
-    },
-    "full_width_info_banner": {
-      "type": "full-width-info-banner",
-      "blocks": {
-        "prop_1": {
-          "type": "prop-item",
-          "settings": {
-            "text": "Zero Artificial Flavors & Sweeteners"
-          }
-        },
-        "prop_2": {
-          "type": "prop-item",
-          "settings": {
-            "text": "Backed by Science"
-          }
-        },
-        "prop_3": {
-          "type": "prop-item",
-          "settings": {
-            "text": "3rd Party Tested"
-          }
-        },
-        "prop_4": {
-          "type": "prop-item",
-          "settings": {
-            "text": "Minimal Ingredients"
-          }
-        }
-      },
-      "block_order": [
-        "prop_1",
-        "prop_2",
-        "prop_3",
-        "prop_4"
-      ],
-      "settings": {
-        "heading": "clean products that work as hard as you do",
-        "background_color": "#111111",
-        "color_scheme": "scheme-1",
-        "content_position": "center-left",
-        "min_height": 750,
-        "min_height_mobile": 700,
-        "panel_padding": 40,
-        "panel_padding_mobile": 30,
-        "padding-block-start": 0,
-        "padding-block-end": 0
-      }
     }
   },
   "order": [
@@ -572,7 +579,7 @@
     "value_props_slideshow",
     "multi_image_slideshow_EEbpUm",
     "logo_gallery_G9nyhr",
-    "product_list_fa6P9H",
-    "full_width_info_banner"
+    "full_width_info_banner",
+    "product_list_fa6P9H"
   ]
 }
