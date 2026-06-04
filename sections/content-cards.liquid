@@ -12,12 +12,12 @@
 
 {% capture slides %}
   {% for block in section.blocks %}
-    <slideshow-slide {{ block.shopify_attributes }}>
+    {% liquid
+      assign sizes_val = '(min-width: 750px) calc(100vw / ' | append: section.blocks.size | append: '), 100vw'
+    %}
+    {% capture card_content %}
       <div class="content-cards__card">
         {% if block.settings.image != blank %}
-          {% liquid
-            assign sizes_val = '(min-width: 750px) calc(100vw / ' | append: section.blocks.size | append: '), 100vw'
-          %}
           {{
             block.settings.image
             | image_url: width: block.settings.image.width
@@ -50,7 +50,12 @@
           {% endif %}
         </div>
       </div>
-    </slideshow-slide>
+    {% endcapture %}
+    {%- render 'slideshow-slide',
+      index: forloop.index0,
+      children: card_content,
+      attributes: block.shopify_attributes
+    -%}
   {% endfor %}
 {% endcapture %}
 
