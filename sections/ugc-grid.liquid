@@ -32,7 +32,15 @@
       {% for block in section.blocks %}
         <div class="ugc-grid__card" {{ block.shopify_attributes }}>
           <div class="ugc-grid__card-media">
-            {% if block.settings.image != blank %}
+            {% if block.settings.image_url != blank %}
+              <img
+                src="{{ block.settings.image_url }}"
+                alt="{{ block.settings.caption | escape | truncate: 80 }}"
+                class="ugc-grid__image"
+                loading="lazy"
+                referrerpolicy="no-referrer"
+              >
+            {% elsif block.settings.image != blank %}
               {%- assign sizes_val = '(min-width: 750px) 25vw, 50vw' -%}
               {{
                 block.settings.image
@@ -433,6 +441,12 @@
       "type": "card",
       "name": "Card",
       "settings": [
+        {
+          "type": "text",
+          "id": "image_url",
+          "label": "External image URL",
+          "info": "Paste an Instagram (or other) image URL. Takes priority over the image picker below."
+        },
         {
           "type": "image_picker",
           "id": "image",
