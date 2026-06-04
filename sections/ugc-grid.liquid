@@ -38,7 +38,7 @@
                 {%- assign _ig_code = _ig_parts[1] | split: '/' | first -%}
                 <div class="ugc-grid__ig-wrapper">
                   <iframe
-                    src="https://www.instagram.com/p/{{ _ig_code }}/embed/"
+                    src="https://www.instagram.com/p/{{ _ig_code }}/embed/?img_index=1"
                     class="ugc-grid__ig-embed"
                     frameborder="0"
                     scrolling="no"
@@ -236,6 +236,27 @@
     width: 100%;
     aspect-ratio: 1 / 1;
     overflow: hidden;
+  }
+
+  /* Solid strips over the left/right edges — covers Instagram's nav arrow buttons */
+  .ugc-grid__ig-wrapper::before,
+  .ugc-grid__ig-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 40px;
+    z-index: 1;
+    background: var(--color-background);
+    pointer-events: none;
+  }
+
+  .ugc-grid__ig-wrapper::before {
+    left: 0;
+  }
+
+  .ugc-grid__ig-wrapper::after {
+    right: 0;
   }
 
   /* Iframe offset: -62px hides the profile pic/username row at the top */
