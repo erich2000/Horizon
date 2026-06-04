@@ -95,14 +95,16 @@
     overflow: hidden;
   }
 
-  /* Desktop: 2-up layout with 50% width slides */
+  /* Desktop: 2-up layout — use vw units like Horizon's with-hints mode does, since
+     percentage widths on slideshow-slide don't reliably resolve to full viewport width
+     inside the Horizon section grid */
   @media screen and (min-width: 750px) {
     .multi-image-slideshow slideshow-slides {
       min-height: 540px;
     }
 
     .multi-image-slideshow slideshow-slide {
-      width: calc(50% - var(--slideshow-gap, 0px) / 2);
+      width: calc(50vw - var(--slideshow-gap, 0px) / 2);
       flex-shrink: 0;
       scroll-snap-align: start;
       min-height: 540px;
