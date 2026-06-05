@@ -684,6 +684,7 @@
         "card_arkkCY": {
           "type": "card",
           "settings": {
+            "image_url": "https://www.instagram.com/p/C9M8M5UOaGM/",
             "caption": "Huge shout out to @ascentprotein for supporting my journey for the last 6 YEARS. No matter what, the quality is always top-notch.",
             "link": "https://www.instagram.com/p/C9M8M5UOaGM/"
           }
@@ -691,6 +692,7 @@
         "card_TNeBfY": {
           "type": "card",
           "settings": {
+            "image_url": "",
             "caption": "Part II: bike ride — 122 miles, 7000' of gain, 7 hour and 34 minutes. Thanks @ascent_protein!",
             "link": ""
           }
@@ -698,6 +700,7 @@
         "card_wjTtN6": {
           "type": "card",
           "settings": {
+            "image_url": "",
             "caption": "@ascent_protein with me every step of the way — keeping me right and helping me bounce back stronger.",
             "link": ""
           }
@@ -705,6 +708,7 @@
         "card_JYfDX9": {
           "type": "card",
           "settings": {
+            "image_url": "",
             "caption": "I choose Ascent products because I know exactly what goes into them - all CLEAN ingredients!!",
             "link": ""
           }
