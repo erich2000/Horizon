@@ -11,6 +11,49 @@
   "type": "footer",
   "name": "Footer",
   "sections": {
+    "custom_footer_ascent": {
+      "type": "custom-footer",
+      "blocks": {
+        "menu_shop": {
+          "type": "menu",
+          "settings": {
+            "heading": "SHOP",
+            "show_social": false,
+            "menu_spacing": 4
+          }
+        },
+        "menu_company": {
+          "type": "menu",
+          "settings": {
+            "heading": "COMPANY",
+            "show_social": false,
+            "menu_spacing": 4
+          }
+        },
+        "menu_connect": {
+          "type": "menu",
+          "settings": {
+            "heading": "CONNECT",
+            "show_social": true,
+            "menu_spacing": 4
+          }
+        }
+      },
+      "block_order": [
+        "menu_shop",
+        "menu_company",
+        "menu_connect"
+      ],
+      "settings": {
+        "color_scheme": "scheme-10",
+        "section_width": "full-width",
+        "logo_max_width": 77,
+        "copyright_text": "© ALL RIGHTS RESERVED COPYRIGHT 2026 Ascent Protein",
+        "badge_width": 80,
+        "padding-block-start": 80,
+        "padding-block-end": 30
+      }
+    },
     "footer_m9NzUG": {
       "type": "footer",
       "blocks": {
@@ -124,6 +167,7 @@
     }
   },
   "order": [
+    "custom_footer_ascent",
     "footer_m9NzUG",
     "footer_utilities_jLGE8U"
   ]
