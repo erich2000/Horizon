@@ -176,6 +176,59 @@
   additional_blocks: additional_blocks
 %}
 
+{% style %}
+  /* PDP design overrides — scoped to this section instance */
+
+  /* Desktop horizontal padding to match design's 80px left/right */
+  @media screen and (min-width: 750px) {
+    .shopify-section-{{ section.id }} .product-information {
+      padding-inline: 80px;
+    }
+  }
+
+  /* Thumbnail size override — schema max is 72px, design shows ~125px */
+  @media screen and (min-width: 750px) {
+    .shopify-section-{{ section.id }} .slideshow-controls__thumbnail {
+      width: 120px;
+      height: auto;
+      aspect-ratio: 1;
+    }
+  }
+
+  /* Carousel arrow styling — circular semi-transparent buttons */
+  @media screen and (min-width: 750px) {
+    .shopify-section-{{ section.id }} slideshow-arrows .slideshow-control {
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 50%;
+      color: #fff;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      mix-blend-mode: normal;
+      opacity: 1;
+    }
+
+    .shopify-section-{{ section.id }} slideshow-arrows .slideshow-control:hover {
+      background: rgba(0, 0, 0, 0.7);
+    }
+
+    .shopify-section-{{ section.id }} slideshow-arrows .slideshow-control .icon-caret {
+      color: #fff;
+    }
+  }
+
+  /* Mobile: ensure thumbnails scroll horizontally */
+  @media screen and (max-width: 749px) {
+    .shopify-section-{{ section.id }} .slideshow-controls__thumbnail {
+      width: 60px;
+      height: auto;
+      aspect-ratio: 1;
+    }
+  }
+{% endstyle %}
+
 {% stylesheet %}
   .sticky-add-to-cart__bar {
     position: fixed;
