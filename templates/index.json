@@ -731,6 +731,21 @@
         "padding-block-start": 94,
         "padding-block-end": 94
       }
+    },
+    "newsletter_Tab3Mq": {
+      "type": "newsletter",
+      "name": "Newsletter",
+      "settings": {
+        "heading": "WANT TO RECOVER BETTER? SUBSCRIBE TO OUR NEWSLETTER",
+        "subtext": "Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals.",
+        "label_text": "Email address:",
+        "placeholder": "Enter email to stay in touch",
+        "button_text": "Subscribe",
+        "section_width": "page-width",
+        "color_scheme": "scheme-9",
+        "padding-block-start": 100,
+        "padding-block-end": 100
+      }
     }
   },
   "order": [
@@ -742,6 +757,7 @@
     "reviews_highlight_TMCtxU",
     "content_cards_wUXrDJ",
     "product_list_fa6P9H",
-    "ugc_grid_rnVhNc"
+    "ugc_grid_rnVhNc",
+    "newsletter_Tab3Mq"
   ]
 }
