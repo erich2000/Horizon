@@ -17,6 +17,7 @@
         "menu_shop": {
           "type": "menu",
           "settings": {
+            "menu": "main-menu",
             "heading": "SHOP",
             "show_social": false,
             "menu_spacing": 4
@@ -25,6 +26,7 @@
         "menu_company": {
           "type": "menu",
           "settings": {
+            "menu": "main-menu",
             "heading": "COMPANY",
             "show_social": false,
             "menu_spacing": 4
@@ -33,6 +35,7 @@
         "menu_connect": {
           "type": "menu",
           "settings": {
+            "menu": "main-menu",
             "heading": "CONNECT",
             "show_social": true,
             "menu_spacing": 4
@@ -49,7 +52,13 @@
         "section_width": "full-width",
         "logo_max_width": 77,
         "copyright_text": "© ALL RIGHTS RESERVED COPYRIGHT 2026 Ascent Protein",
+        "policy_menu": "",
+        "badge_link": "",
         "badge_width": 80,
+        "facebook_url": "",
+        "twitter_url": "",
+        "instagram_url": "",
+        "youtube_url": "",
         "padding-block-start": 80,
         "padding-block-end": 30
       }
@@ -101,6 +110,7 @@
       "block_order": [
         "group_H6VpwJ"
       ],
+      "disabled": true,
       "name": "t:names.footer",
       "settings": {
         "section_width": "page-width",
